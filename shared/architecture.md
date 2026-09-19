@@ -83,7 +83,7 @@ Native tools are generated from the same OpenAPI document the gateway serves at 
 ## References
 
 - OpenLLM: [https://openllm.sh](https://openllm.sh)
-- CLI / MCP: [https://github.com/openllmsh/cli](https://github.com/openllmsh/cli)
+- CLI / MCP: [https://github.com/openllmsh/cli/tree/prerelease](https://github.com/openllmsh/cli/tree/prerelease)
 - This monorepo: [https://github.com/MindDragonLabs/openllm-bots](https://github.com/MindDragonLabs/openllm-bots)
 - Predecessor (flat plugin): [https://github.com/MindDragonLabs/grok-openllm-orchestrator](https://github.com/MindDragonLabs/grok-openllm-orchestrator)
 - Cursor plugins: [https://cursor.com/docs/reference/plugins](https://cursor.com/docs/reference/plugins)

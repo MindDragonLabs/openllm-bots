@@ -112,7 +112,7 @@ Create `bots/<name>/` with `README.md` + `bot.manifest.json`, link to `shared/`,
 ## Links
 
 - OpenLLM: [https://openllm.sh](https://openllm.sh)
-- OpenLLM CLI: [https://github.com/openllmsh/cli](https://github.com/openllmsh/cli)
+- OpenLLM CLI: [https://github.com/openllmsh/cli/tree/prerelease](https://github.com/openllmsh/cli/tree/prerelease)
 - This monorepo: [https://github.com/MindDragonLabs/openllm-bots](https://github.com/MindDragonLabs/openllm-bots)
 - Predecessor: [https://github.com/MindDragonLabs/grok-openllm-orchestrator](https://github.com/MindDragonLabs/grok-openllm-orchestrator)
 - Cursor plugins reference: [https://cursor.com/docs/reference/plugins](https://cursor.com/docs/reference/plugins)

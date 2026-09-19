@@ -14,7 +14,7 @@ Teach the user (and yourself) this split, then connect once.
 
 This plugin does **not** replace GitHub, Vercel, or the editor. It wires OpenLLM so the orchestrator can manage account surfaces and run real coding tasks through the gateway.
 
-Official product: [openllm.sh](https://openllm.sh). CLI source: [github.com/openllmsh/cli](https://github.com/openllmsh/cli). This monorepo: [github.com/MindDragonLabs/openllm-bots](https://github.com/MindDragonLabs/openllm-bots). Shared architecture: [shared/architecture.md](../../../../shared/architecture.md). Cursor setup: [docs/setup.md](../../docs/setup.md).
+Official product: [openllm.sh](https://openllm.sh). CLI source: [github.com/openllmsh/cli](https://github.com/openllmsh/cli/tree/prerelease). This monorepo: [github.com/MindDragonLabs/openllm-bots](https://github.com/MindDragonLabs/openllm-bots). Shared architecture: [shared/architecture.md](../../../../shared/architecture.md). Cursor setup: [docs/setup.md](../../docs/setup.md).
 
 ## First-run script (one thing at a time)
 

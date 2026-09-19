@@ -16,7 +16,7 @@ A **template share cannot pack custom MCP** for the next owner. Cursor plugin `m
 
 This folder does **not** replace GitHub, Vercel, or the editor. Shared architecture: [shared/architecture.md](../../../../shared/architecture.md). Connect: [shared/openllm-connect.md](../../../../shared/openllm-connect.md). Copy-paste AddMcpServer: [docs/setup.md](../../docs/setup.md).
 
-Official product: [openllm.sh](https://openllm.sh). CLI: [github.com/openllmsh/cli](https://github.com/openllmsh/cli). Monorepo: [github.com/MindDragonLabs/openllm-bots](https://github.com/MindDragonLabs/openllm-bots).
+Official product: [openllm.sh](https://openllm.sh). CLI: [github.com/openllmsh/cli](https://github.com/openllmsh/cli/tree/prerelease). Monorepo: [github.com/MindDragonLabs/openllm-bots](https://github.com/MindDragonLabs/openllm-bots).
 
 ## First-run script (one thing at a time)
 

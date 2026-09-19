@@ -16,7 +16,7 @@ Cursor agent is the orchestrator; OpenLLM is the model fabric. Plugin id: `openl
    openllm version
    ```
 
-   Dashboard one-click installs are sandboxed — run `~/.openllm/bin/openllm setup` once. Upstream CLI: [github.com/openllmsh/cli](https://github.com/openllmsh/cli).
+   Dashboard one-click installs are sandboxed — run `~/.openllm/bin/openllm setup` once. Upstream CLI: [github.com/openllmsh/cli](https://github.com/openllmsh/cli/tree/prerelease).
 
 3. An API key from the OpenLLM dashboard (`sk-llm` / API key). Put it in plugin variables, not in git.
 

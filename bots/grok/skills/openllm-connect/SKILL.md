@@ -11,7 +11,7 @@ Grok Bot **does not** pick up Cursor `mcp.json`. A shared bot **template cannot 
 
 Grok Bot runs in the cloud: it **cannot** reach `localhost` on the user's laptop. A local daemon URL will not work.
 
-Upstream: [OpenLLM CLI](https://github.com/openllmsh/cli). Shared write-up: [shared/openllm-connect.md](../../../../shared/openllm-connect.md). Copy-paste: [docs/setup.md](../../docs/setup.md). Config keys: `OPENLLM_API_KEY` and `OPENLLM_CLOUD_ORIGIN`.
+Upstream: [OpenLLM CLI](https://github.com/openllmsh/cli/tree/prerelease). Shared write-up: [shared/openllm-connect.md](../../../../shared/openllm-connect.md). Copy-paste: [docs/setup.md](../../docs/setup.md). Config keys: `OPENLLM_API_KEY` and `OPENLLM_CLOUD_ORIGIN`.
 
 Ask **one question at a time**. Never commit secrets.
 

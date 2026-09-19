@@ -1,6 +1,6 @@
 # Connect OpenLLM (shared)
 
-How every orchestrator bot in this monorepo talks to OpenLLM. Product: [openllm.sh](https://openllm.sh). CLI source: [github.com/openllmsh/cli](https://github.com/openllmsh/cli).
+How every orchestrator bot in this monorepo talks to OpenLLM. Product: [openllm.sh](https://openllm.sh). CLI source: [github.com/openllmsh/cli](https://github.com/openllmsh/cli/tree/prerelease).
 
 Architecture (orchestrator vs model fabric): [architecture.md](./architecture.md). Example stdio MCP config: [mcp.stdio.example.json](./mcp.stdio.example.json).
 
