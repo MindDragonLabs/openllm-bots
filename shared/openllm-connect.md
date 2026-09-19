@@ -107,4 +107,5 @@ Names can shift; trust the live list:
 | --- | --- |
 | Cursor | Plugin `mcp.json` + Plugins → Configure. See [bots/cursor](../bots/cursor/README.md). |
 | Grok Bot | Custom MCP in chat. Template share cannot pack it. See [bots/grok/docs/setup.md](../bots/grok/docs/setup.md). |
-| Muse / Hermes | Same fabric when those folders leave stub status. |
+| Muse | Emulated `openllm` workspace skill + Secure Vault (not `openllm mcp`). See [bots/muse](../bots/muse/README.md). |
+| Hermes | Same fabric when that folder leaves stub status. |

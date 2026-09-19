@@ -14,4 +14,4 @@ Status: `stub` — see [`bot.manifest.json`](./bot.manifest.json).
 - [OpenLLM connect](../../shared/openllm-connect.md) — CLI install, env vars, remote MCP rules
 - [stdio MCP example](../../shared/mcp.stdio.example.json)
 
-Ready bots today: [Grok](../grok), [Cursor](../cursor). How to fill this folder later: [CONTRIBUTING.md](../../CONTRIBUTING.md).
+Ready bots today: [Grok](../grok), [Cursor](../cursor), [Muse](../muse). How to fill this folder later: [CONTRIBUTING.md](../../CONTRIBUTING.md).

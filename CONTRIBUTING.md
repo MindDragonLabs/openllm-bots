@@ -44,6 +44,8 @@ Thank you for helping with [openllm-bots](https://github.com/MindDragonLabs/open
 
    For a **stub**, `status` is `"stub"`. The README should say the folder is reserved, point at [shared/architecture.md](./shared/architecture.md) and [shared/openllm-connect.md](./shared/openllm-connect.md), and skip fake skills.
 
+   Muse is an exception to the stdio `openllm mcp` block above: it attaches with an emulated workspace skill + Secure Vault. See [`bots/muse/bot.manifest.json`](./bots/muse/bot.manifest.json).
+
 4. For a **ready** bot, add host-specific material:
 
    | Path | Purpose |

@@ -2,7 +2,7 @@
 
 **Standardized multi-bot repository** for orchestrators that share one model fabric.
 
-Each orchestrator bot (Grok, Muse, Cursor, Hermes, …) lives in its own folder. They all talk to [OpenLLM](https://openllm.sh) the same way: `openllm mcp`.
+Each orchestrator bot (Grok, Muse, Cursor, Hermes, …) lives in its own folder. They all use [OpenLLM](https://openllm.sh) as the model fabric. Grok and Cursor attach via `openllm mcp`; Muse uses an emulated workspace skill + Secure Vault (see [`bots/muse`](./bots/muse)).
 
 | Role | Who | Does |
 | --- | --- | --- |
@@ -20,12 +20,12 @@ This layout replaces the flat plugin at [MindDragonLabs/grok-openllm-orchestrato
 
 ## Bots
 
-| id | host | status | path |
-| --- | --- | --- | --- |
-| `grok` | grok-bot | ready | [`bots/grok`](./bots/grok) |
-| `cursor` | cursor | ready | [`bots/cursor`](./bots/cursor) |
-| `muse` | muse | stub | [`bots/muse`](./bots/muse) |
-| `hermes` | hermes | stub | [`bots/hermes`](./bots/hermes) |
+| id | host | status | path | description |
+| --- | --- | --- | --- | --- |
+| `grok` | grok-bot | ready | [`bots/grok`](./bots/grok) | Grok Bot orchestrates; OpenLLM via `openllm mcp` |
+| `cursor` | cursor | ready | [`bots/cursor`](./bots/cursor) | Cursor plugin; OpenLLM via `openllm mcp` |
+| `muse` | muse | ready | [`bots/muse`](./bots/muse) | Muse orchestrates OpenLLM via emulated skill + Secure Vault |
+| `hermes` | hermes | stub | [`bots/hermes`](./bots/hermes) | Reserved; host-specific skills not published yet |
 
 `status` is `ready`, `stub`, or `experimental` (see each `bot.manifest.json`).
 
@@ -66,6 +66,12 @@ Full Cursor setup: [bots/cursor/README.md](./bots/cursor/README.md) and [bots/cu
 
 Submit/update a marketplace listing: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish).
 
+## Quick start — Muse
+
+Muse is the orchestrator. OpenLLM ([openllm.sh](https://openllm.sh)) is the model fabric, attached via an **emulated workspace skill** and a Secure Vault key — not `openllm mcp`.
+
+Read [`bots/muse`](./bots/muse) in order (`docs/01-overview.md` … `docs/09-troubleshooting.md`). Templates: [`bots/muse/templates`](./bots/muse/templates). Sample flows: [`bots/muse/examples/sample-flows.md`](./bots/muse/examples/sample-flows.md).
+
 ## Adding a bot
 
 Create `bots/<name>/` with `README.md` + `bot.manifest.json`, link to `shared/`, and (if it is a Cursor plugin) register it in `.cursor-plugin/marketplace.json`. Step-by-step: [CONTRIBUTING.md](./CONTRIBUTING.md).
@@ -75,7 +81,8 @@ Create `bots/<name>/` with `README.md` + `bot.manifest.json`, link to `shared/`,
 **In scope**
 
 - Teaching the orchestrator vs model-fabric split
-- Connecting official `openllm mcp`
+- Connecting official `openllm mcp` (Grok, Cursor)
+- Muse emulated workspace skill + Secure Vault against openllm.sh
 - Per-host skills and setup docs
 - Dashboard-like account work and development tasks through the gateway
 
