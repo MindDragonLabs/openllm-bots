@@ -1,0 +1,50 @@
+{
+  "name": "openllm-orchestrator-cursor",
+  "displayName": "OpenLLM Orchestrator (Cursor)",
+  "version": "0.1.0",
+  "description": "Let any Cursor agent orchestrate OpenLLM for dashboard ops and real development tasks — models and gateway MCP in, GitHub/Vercel still yours.",
+  "author": {
+    "name": "MindDragonLabs"
+  },
+  "publisher": "MindDragonLabs",
+  "homepage": "https://github.com/MindDragonLabs/openllm-bots",
+  "repository": "https://github.com/MindDragonLabs/openllm-bots",
+  "license": "MIT",
+  "keywords": [
+    "openllm",
+    "cursor",
+    "mcp",
+    "orchestrator",
+    "gateway"
+  ],
+  "category": "agent-orchestration",
+  "tags": [
+    "mcp",
+    "openllm",
+    "cursor",
+    "orchestrator",
+    "gateway",
+    "model-routing"
+  ],
+  "logo": "assets/logo.svg",
+  "skills": "skills",
+  "rules": "rules",
+  "commands": "commands",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "OPENLLM_API_KEY": {
+        "type": "string",
+        "title": "OpenLLM API key",
+        "description": "sk-llm / API key from the openllm.sh dashboard. Used only as ${OPENLLM_API_KEY} in mcp.json. Never commit the value."
+      },
+      "OPENLLM_CLOUD_ORIGIN": {
+        "type": "string",
+        "title": "OpenLLM cloud origin",
+        "description": "Gateway origin the OpenLLM CLI MCP server talks to. Override only for a self-hosted or non-default origin.",
+        "default": "https://openllm.sh"
+      }
+    },
+    "required": ["OPENLLM_API_KEY"]
+  }
+}

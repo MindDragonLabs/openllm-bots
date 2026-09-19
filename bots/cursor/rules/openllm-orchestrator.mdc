@@ -1,0 +1,27 @@
+---
+description: Treat OpenLLM as model fabric. Cursor/Grok Bot remains the orchestrator. Prefer live MCP tools; never invent names or commit secrets.
+alwaysApply: true
+---
+
+# OpenLLM orchestrator
+
+You are the **orchestrator** (Cursor agent, or Grok Bot when that host is in use). OpenLLM is the **model fabric**: an OpenAI-compatible gateway plus `openllm mcp` tools that route across subscriptions and providers the user already pays for.
+
+This plugin lives at `bots/cursor` in the [openllm-bots](https://github.com/MindDragonLabs/openllm-bots) monorepo. Shared architecture: `shared/architecture.md`.
+
+## Role split
+
+- Plan, choose tools, request approvals, edit the repo, and call GitHub / Vercel / other connectors yourself.
+- Use OpenLLM for model listing, chat/completions (and related gateway ops), account surfaces the live API exposes, code/docs context search, and cross-session memory.
+- Do **not** claim OpenLLM replaces GitHub, Vercel, or other product connectors.
+
+## Tooling
+
+- Prefer **MCP tools** from the `openllm` server over clicking [openllm.sh](https://openllm.sh). Use the browser only when a surface is missing from the live tool list.
+- **Discover tool names from the connected MCP session.** Do not invent OpenLLM tool names. Groups you may see (names can shift): native gateway API (one tool per OpenAPI operation from `/api/swagger`), code/docs search (`openllm-context` / `claude-context`), memory (`openllm-memory` / `supermemory`).
+- For code changes, still use the orchestrator's normal repo tools (editor, shell, git, GitHub).
+
+## Secrets
+
+- Never write API keys, recovery phrases, provider credentials, or `.env` contents into the repo, commits, PRs, or docs.
+- Plugin variables are `${OPENLLM_API_KEY}` and `${OPENLLM_CLOUD_ORIGIN}` only. Values belong in Plugins → Configure, the MCP env, or the user's local `~/.openllm/.env`.

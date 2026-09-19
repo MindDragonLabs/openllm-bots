@@ -1,0 +1,17 @@
+{
+  "id": "grok",
+  "displayName": "Grok Bot",
+  "host": "grok-bot",
+  "status": "ready",
+  "description": "Grok Bot as orchestrator; OpenLLM as model fabric. Each owner adds OpenLLM as custom MCP — a template share cannot pack it.",
+  "openllm": {
+    "mcp": "stdio",
+    "command": "openllm",
+    "args": ["mcp"],
+    "env": ["OPENLLM_API_KEY", "OPENLLM_CLOUD_ORIGIN"]
+  },
+  "paths": {
+    "skills": "skills",
+    "docs": "docs"
+  }
+}

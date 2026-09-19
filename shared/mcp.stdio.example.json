@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "openllm": {
+      "command": "openllm",
+      "args": ["mcp"],
+      "env": {
+        "OPENLLM_API_KEY": "${OPENLLM_API_KEY}",
+        "OPENLLM_CLOUD_ORIGIN": "${OPENLLM_CLOUD_ORIGIN}"
+      }
+    }
+  }
+}
