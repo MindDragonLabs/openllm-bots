@@ -29,10 +29,10 @@ OpenLLM attachment (custom OpenAI-compatible base URL or MCP), record verdicts.
 | 11 | Aider | aider | 0.86.2 | `--openai-api-base` | **LIVE** (`openai/<model>` prefix + `/v1`) |
 | 12 | Crush | crush | 0.95.0 | crush.json provider | **LIVE** (`openai-compat` type, `$OPENLLM_API_KEY`) |
 | 13 | Pi | pi | 0.73.1 | ~/.pi/agent/models.json | **LIVE** (custom provider, `openai-completions`) |
-| 14 | MiniMax mmx | mmx | 1.0.26 | — | pending (MiniMax token plan; mmx agent setup supports claude/codex/grok/opencode/hermes/pi) |
+| 14 | MiniMax mmx | mmx | 1.0.26 | platform API key | authenticated (key from `~/.hermes/.env`); multimodal toolkit, not a coding agent — superseded by mcode for this survey |
 | 15 | CommandCode | cmd | 1.58.0 | own gateway | works (own 72-model catalog; itself a gateway, not an OpenLLM client) |
 | 16 | Amp | — | — | not installed | Sourcegraph; install path unresolved |
-| 17 | mcode | — | — | not installed | `curl -fsSL https://filecdn.minimax.chat/public/install.sh | bash` |
+| 17 | MiniMax Code (mcode) | mcode | 0.4.12 | `minimax_api` provider (platform key) | **LIVE** — `mcode exec` completes through MiniMax; OAuth login optional (`mcode login --region global`) |
 | 18 | Claude Squad | claude-squad | 1.0.20 | — | installed; not tested |
 
 ## OpenLLM attach methods that WORK (per harness type)
@@ -42,6 +42,11 @@ OpenLLM attachment (custom OpenAI-compatible base URL or MCP), record verdicts.
 2. **Anthropic-compatible base URL** — Claude Code. `ANTHROPIC_BASE_URL` + `ANTHROPIC_AUTH_TOKEN`.
 3. **MCP (stdio)** — Hermes (bots/hermes), Cursor (bots/cursor). `openllm mcp` exposes 43 tools.
 4. **Env var gateways** — harnesses that read `OPENAI_BASE_URL`/`GOOGLE_GEMINI_BASE_URL` natively.
+
+## Credentials state (macmini)
+- MiniMax platform key: `~/.hermes/.env` `MINIMAX_API_KEY` (not in Hermes Vault — vault has no minimax entry). Seeded both mmx and mcode.
+- mcode home: `~/.minimax-code/` (binary `~/.minimax-code/bin/mcode`, v0.4.12).
+- mmx login: `mmx auth login --api-key <key>` → `~/.mmx/credentials.json`.
 
 ## Gotchas found
 
