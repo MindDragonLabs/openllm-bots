@@ -87,6 +87,14 @@ Muse is the orchestrator. OpenLLM ([openllm.sh](https://openllm.sh)) is the mode
 
 Read [`bots/muse`](./bots/muse) in order (`docs/01-overview.md` … `docs/09-troubleshooting.md`). Templates: [`bots/muse/templates`](./bots/muse/templates). Sample flows: [`bots/muse/examples/sample-flows.md`](./bots/muse/examples/sample-flows.md).
 
+## Harness survey
+
+`docs/harness-survey.md` tracks which coding-agent CLIs attach to OpenLLM and how — OpenAI-compatible base URL, Anthropic-compatible base URL, or MCP. Verified live on macOS against a local OpenLLM gateway:
+
+- **Attach methods that work:** Claude Code (Anthropic-compat base URL), Goose, Aider, Crush, Pi (OpenAI-compat base URL / custom provider), Hermes and Cursor (MCP).
+- **Blocked, with reasons:** Codex (ChatGPT-account auth overrides base URL), Gemini CLI (Google-protocol only). Qwen reaches the gateway but its tool schema is rejected (422).
+- Also covered: mcode (MiniMax Code), CommandCode, Grok CLI, Devin CLI, Kimi CLI, mmx, claude-squad.
+
 ## Adding a bot
 
 Create `bots/<name>/` with `README.md` + `bot.manifest.json`, link to `shared/`, and (if it is a Cursor plugin) register it in `.cursor-plugin/marketplace.json`. Step-by-step: [CONTRIBUTING.md](./CONTRIBUTING.md).
@@ -113,6 +121,7 @@ Create `bots/<name>/` with `README.md` + `bot.manifest.json`, link to `shared/`,
 
 - OpenLLM: [https://openllm.sh](https://openllm.sh)
 - OpenLLM CLI: [https://github.com/openllmsh/cli/tree/prerelease](https://github.com/openllmsh/cli/tree/prerelease)
+- Harness survey: [docs/harness-survey.md](./docs/harness-survey.md)
 - This monorepo: [https://github.com/MindDragonLabs/openllm-bots](https://github.com/MindDragonLabs/openllm-bots)
 - Predecessor: [https://github.com/MindDragonLabs/grok-openllm-orchestrator](https://github.com/MindDragonLabs/grok-openllm-orchestrator)
 - Cursor plugins reference: [https://cursor.com/docs/reference/plugins](https://cursor.com/docs/reference/plugins)

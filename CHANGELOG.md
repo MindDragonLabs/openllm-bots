@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- README: Harness survey section linking docs/harness-survey.md (live attach methods, blocked harnesses with reasons).
+
 - Harness investigation program: audit of 20 coding-agent CLIs (Claude Code, Codex CLI, Devin CLI, CommandCode, MiniMax CLI, OpenCode, Cursor CLI, Grok CLI, Pi CLI, and more) for OpenLLM model-fabric attachment. Results land under `bots/` as each harness is verified.
 
 ### Changed
