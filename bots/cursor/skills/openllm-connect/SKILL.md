@@ -18,7 +18,7 @@ Ask **one question at a time**. Never commit secrets.
 Canonical:
 
 ```sh
-curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+curl -fsSL "https://openllm.sh/install" | bash
 openllm version
 openllm mcp
 ```

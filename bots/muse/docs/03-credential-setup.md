@@ -38,6 +38,13 @@ It writes `~/workspace/skills/openllm/SKILL.md` whose **Tooling** and **Auth**
 sections carry the generated helper import, where the key goes, the allowed
 hosts, and the rotation procedure. Leave those two sections as generated.
 
+Copy that helper import into `bin/openllm_cli.py` (FILL). The template
+expects a function named `get_bearer_token()` that returns the bearer
+token string — confirm the name against scaffold output. Production must
+not read `OPENLLM_API_KEY`; that env var is only for `--local-test` /
+`OPENLLM_LOCAL_TEST=1`. Fill `ALLOWED_API_HOSTS` from the `api_hosts`
+passed to `request_api_access` (or set `OPENLLM_API_HOSTS`).
+
 ## Rotation
 
 If the key is revoked, rotated, or a real request carrying it is rejected with

@@ -7,8 +7,9 @@ An agent looping on fallback chains can burn real tokens. Set up a watchdog.
 Create a cron job (see `templates/cron/usage-watchdog.md`) that:
 
 - Runs daily (or hourly during heavy-use periods).
-- Calls the gateway's usage endpoint for the scoped key (or the dashboard's
-  reported spend, if no API exposes it).
+- Calls `bin/openllm_cli.py usage` (GET of the gateway usage path; FILL
+  `/usage` or `--usage-path` / `OPENLLM_USAGE_PATH`) for the scoped key
+  (or the dashboard's reported spend, if no API exposes it).
 - Compares against the key's spend cap.
 - Stays silent when healthy; notifies the user at ~80% of cap; warns loudly
   at ~95%.

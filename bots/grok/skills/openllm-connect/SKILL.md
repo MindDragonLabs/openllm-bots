@@ -26,7 +26,7 @@ There is no separate settings form. In chat (paraphrase, then confirm with the u
 Install CLI on a machine you control (review, then):
 
 ```sh
-curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+curl -fsSL "https://openllm.sh/install" | bash
 openllm version
 ```
 
