@@ -20,7 +20,7 @@ Homepage / source: [github.com/MindDragonLabs/openllm-bots](https://github.com/M
 1. OpenLLM account + CLI (review, then run):
 
    ```sh
-   curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+   curl -fsSL "https://openllm.sh/install" | bash
    openllm version
    ```
 

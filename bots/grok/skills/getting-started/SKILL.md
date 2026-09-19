@@ -33,7 +33,7 @@ Ask whether `openllm` is on PATH **on the machine that will spawn MCP** (Grok Bo
 If they control a machine that needs the CLI, prefer the official installer (user should review the script before piping to a shell):
 
 ```sh
-curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+curl -fsSL "https://openllm.sh/install" | bash
 openllm version
 ```
 

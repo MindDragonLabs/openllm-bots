@@ -12,7 +12,7 @@ Do **not** commit API keys. Do **not** invent a remote MCP URL.
 2. The **OpenLLM CLI** (provides `openllm mcp`). Review the official install script, then:
 
    ```sh
-   curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+   curl -fsSL "https://openllm.sh/install" | bash
    openllm version
    ```
 

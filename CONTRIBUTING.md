@@ -81,7 +81,7 @@ Thank you for helping with [openllm-bots](https://github.com/MindDragonLabs/open
 Document the official installer the same way [shared/openllm-connect.md](./shared/openllm-connect.md) does (review, then run):
 
 ```sh
-curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+curl -fsSL "https://openllm.sh/install" | bash
 openllm version
 ```
 

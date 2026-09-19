@@ -20,7 +20,7 @@ Optional later: a **public Grok Bot template that references this repository** f
 Install CLI (review the script, then):
 
 ```sh
-curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+curl -fsSL "https://openllm.sh/install" | bash
 openllm version
 ```
 

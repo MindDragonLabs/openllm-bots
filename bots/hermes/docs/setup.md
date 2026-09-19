@@ -9,7 +9,7 @@ Verified against `openllm` CLI 2.6.36 and Hermes `mcp add`/`mcp test`.
 On the machine Hermes runs on (review the script, then run):
 
 ```sh
-curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+curl -fsSL "https://openllm.sh/install" | bash
 openllm version
 ```
 

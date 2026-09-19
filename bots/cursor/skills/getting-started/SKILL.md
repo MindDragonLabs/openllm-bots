@@ -31,7 +31,7 @@ Ask whether `openllm` is on their PATH.
 If not, prefer the official installer (user should review the script before piping to a shell):
 
 ```sh
-curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+curl -fsSL "https://openllm.sh/install" | bash
 openllm version
 ```
 

@@ -36,7 +36,7 @@ Grok Bot is the orchestrator. A **template share cannot pack custom MCP** — ea
 1. Review, then install the CLI:
 
    ```sh
-   curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+   curl -fsSL "https://openllm.sh/install" | bash
    openllm version
    ```
 

@@ -12,7 +12,7 @@ Cursor agent is the orchestrator; OpenLLM is the model fabric. Plugin id: `openl
 2. The OpenLLM CLI. Review, then:
 
    ```sh
-   curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash
+   curl -fsSL "https://openllm.sh/install" | bash
    openllm version
    ```
 

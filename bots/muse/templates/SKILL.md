@@ -22,10 +22,15 @@ CLI: `bin/openllm_cli.py` (stdlib only).
 - `chat --model <id-or-chain> --message <text> [--system <text>]
   [--max-tokens N] [--temperature T]`
   → `POST {base_url}/chat/completions`. Prints assistant text + JSON footer
-  (model served, tokens, latency).
+  (model served, tokens, `latency_ms`).
 - `models` → `GET {base_url}/models`. Prints available ids.
+- `usage` → `GET {base_url}/usage` (FILL path; `--usage-path` /
+  `OPENLLM_USAGE_PATH`). Prints `spend`, `cap`, `reset_period` when
+  present, else raw JSON. The spend watchdog must call this command.
 - `--base-url` overrides; otherwise `OPENLLM_BASE_URL`.
   <!-- FILL: base URL from the user's openllm.sh dashboard -->
+  HTTPS required before the bearer is sent; allow-list hosts from
+  `credentials.request_api_access` `api_hosts` (or `OPENLLM_API_HOSTS`).
 
 ## Auth
 
@@ -34,8 +39,8 @@ CLI: `bin/openllm_cli.py` (stdlib only).
 
 ## Operating Rules
 
-1. Check spend state before large or batched jobs; ask first if the scoped key
-   is near its cap.
+1. Check spend state (`bin/openllm_cli.py usage`) before large or batched
+   jobs; ask first if the scoped key is near its cap.
 2. Prefer the user's named fallback chains over single models when they exist.
 3. Always report which hop served the request — never present a
    fallback-served answer as the requested model's.

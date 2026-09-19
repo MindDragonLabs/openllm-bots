@@ -17,7 +17,7 @@ Hermes does **not** get OpenLLM by default. Attach it per profile: [docs/setup.m
 ## First-run script (one thing at a time)
 
 1. **Explain the split** (table above) in two sentences. Ask whether they already have an OpenLLM account; if not, send them to [openllm.sh](https://openllm.sh) and wait.
-2. **CLI on the Hermes host.** `command -v openllm || openllm version`. If missing, official installer (review first): `curl -fsSL "https://openllm.sh/api/setup/cli/install.sh" | bash`.
+2. **CLI on the Hermes host.** `command -v openllm && openllm version`. If missing, official installer (review first): `curl -fsSL "https://openllm.sh/install" | bash`.
 3. **API key.** From the openllm.sh dashboard (`sk-llm` prefix). Goes into the profile `.env` (`hermes config env-path`) — never into a skill, git, or chat. If pasted in chat: move it to `.env`, do not echo it.
 4. **Origin.** Default `https://openllm.sh`. Only collect `OPENLLM_CLOUD_ORIGIN` if they say otherwise.
 5. **Register + verify** — the two commands from [docs/setup.md](../../docs/setup.md): `hermes mcp add openllm …` then `hermes mcp test openllm`. Mind the flag-order and stdin pitfalls documented there.
