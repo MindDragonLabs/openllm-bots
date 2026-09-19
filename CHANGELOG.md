@@ -5,6 +5,12 @@ All notable changes to this monorepo are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Hermes** (`bots/hermes`, status: ready) — Hermes Agent as orchestrator. `hermes mcp add` stdio setup docs (verified against openllm CLI 2.6.36 / 43 tools), plus five skills: `getting-started`, `hermes-orchestrator`, `openllm-connect`, `openllm-dashboard`, `openllm-dev-task`. Documents two `hermes mcp add` pitfalls: `--args` must come last (it swallows trailing flags into `args`), and the tool-enable prompt needs stdin when scripted.
+
 ## [0.1.0] — 2026-09-19
 
 ### Added

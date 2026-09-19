@@ -25,7 +25,7 @@ This layout replaces the flat plugin at [MindDragonLabs/grok-openllm-orchestrato
 | `grok` | grok-bot | ready | [`bots/grok`](./bots/grok) |
 | `cursor` | cursor | ready | [`bots/cursor`](./bots/cursor) |
 | `muse` | muse | stub | [`bots/muse`](./bots/muse) |
-| `hermes` | hermes | stub | [`bots/hermes`](./bots/hermes) |
+| `hermes` | hermes | ready | [`bots/hermes`](./bots/hermes) |
 
 `status` is `ready`, `stub`, or `experimental` (see each `bot.manifest.json`).
 
@@ -65,6 +65,21 @@ Plugin id: `openllm-orchestrator-cursor` (listed in [`.cursor-plugin/marketplace
 Full Cursor setup: [bots/cursor/README.md](./bots/cursor/README.md) and [bots/cursor/docs/setup.md](./bots/cursor/docs/setup.md). Commands: `/setup-openllm`, `/openllm-dev-task`.
 
 Submit/update a marketplace listing: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish).
+
+## Quick start — Hermes
+
+Hermes is the orchestrator. Attach OpenLLM as a stdio MCP server on the Hermes host (per profile; the key goes in the profile `.env`, not git):
+
+```sh
+hermes mcp add openllm --command openllm --connect-timeout 30 \
+  --env 'OPENLLM_API_KEY=${OPENLLM_API_KEY}' 'OPENLLM_CLOUD_ORIGIN=${OPENLLM_CLOUD_ORIGIN}' \
+  --args mcp
+hermes mcp test openllm
+```
+
+Then import skills from [`bots/hermes/skills/`](./bots/hermes/skills/).
+
+Full setup with pitfalls: [bots/hermes/docs/setup.md](./bots/hermes/docs/setup.md).
 
 ## Adding a bot
 
