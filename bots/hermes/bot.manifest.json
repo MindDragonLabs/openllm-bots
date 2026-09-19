@@ -2,8 +2,8 @@
   "id": "hermes",
   "displayName": "Hermes",
   "host": "hermes",
-  "status": "stub",
-  "description": "Reserved folder for the Hermes orchestrator. Same OpenLLM model fabric as the other bots; host-specific skills are not published yet.",
+  "status": "ready",
+  "description": "Hermes Agent as orchestrator; OpenLLM as model fabric via the hermes mcp stdio server. Skills plus setup docs for attaching openllm mcp to any Hermes profile.",
   "openllm": {
     "mcp": "stdio",
     "command": "openllm",
