@@ -7,7 +7,7 @@ description: Step-by-step connection of OpenLLM MCP to Cursor and Grok Bot. Use 
 
 Wire the official unified MCP server (`openllm mcp`) so the orchestrator can see gateway, context, and memory tools.
 
-Upstream: [OpenLLM CLI](https://github.com/openllmsh/cli). Shared write-up: [shared/openllm-connect.md](../../../../shared/openllm-connect.md). Cursor docs: [docs/setup.md](../../docs/setup.md). Config keys: `OPENLLM_API_KEY` and `OPENLLM_CLOUD_ORIGIN` (environment **or** `~/.openllm/.env` from daemon pairing).
+Upstream: [OpenLLM CLI](https://github.com/openllmsh/cli/tree/prerelease). Shared write-up: [shared/openllm-connect.md](../../../../shared/openllm-connect.md). Cursor docs: [docs/setup.md](../../docs/setup.md). Config keys: `OPENLLM_API_KEY` and `OPENLLM_CLOUD_ORIGIN` (environment **or** `~/.openllm/.env` from daemon pairing).
 
 Ask **one question at a time**. Never commit secrets.
 
