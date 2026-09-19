@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="openllm-bots abstract mark">
+  <title>openllm-bots</title>
+  <defs>
+    <linearGradient id="bg" x1="16" y1="8" x2="112" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0b1f2a"/>
+      <stop offset="1" stop-color="#123a3a"/>
+    </linearGradient>
+    <linearGradient id="gate" x1="40" y1="28" x2="88" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7ee8c5"/>
+      <stop offset="1" stop-color="#3ec6c9"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path
+    d="M64 22 L98 42 L98 82 L64 102 L30 82 L30 42 Z"
+    fill="none"
+    stroke="url(#gate)"
+    stroke-width="5"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M64 40 L82 51 L82 73 L64 84 L46 73 L46 51 Z"
+    fill="#163f42"
+    stroke="#8ef0d2"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+  />
+  <circle cx="64" cy="62" r="7" fill="#f4c46b"/>
+  <circle cx="24" cy="38" r="5" fill="#8ef0d2"/>
+  <circle cx="104" cy="38" r="5" fill="#8ef0d2"/>
+  <circle cx="24" cy="90" r="5" fill="#f4c46b"/>
+  <circle cx="104" cy="90" r="5" fill="#f4c46b"/>
+  <path d="M29 40 C40 48, 44 52, 50 56" fill="none" stroke="#8ef0d2" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M99 40 C88 48, 84 52, 78 56" fill="none" stroke="#8ef0d2" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M29 88 C40 80, 46 74, 52 70" fill="none" stroke="#f4c46b" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M99 88 C88 80, 82 74, 76 70" fill="none" stroke="#f4c46b" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

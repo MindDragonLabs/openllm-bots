@@ -1,0 +1,17 @@
+{
+  "id": "muse",
+  "displayName": "Muse",
+  "host": "muse",
+  "status": "stub",
+  "description": "Reserved folder for the Muse orchestrator. Same OpenLLM model fabric as the other bots; host-specific skills are not published yet.",
+  "openllm": {
+    "mcp": "stdio",
+    "command": "openllm",
+    "args": ["mcp"],
+    "env": ["OPENLLM_API_KEY", "OPENLLM_CLOUD_ORIGIN"]
+  },
+  "paths": {
+    "skills": "skills",
+    "docs": "docs"
+  }
+}

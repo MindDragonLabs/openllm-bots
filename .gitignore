@@ -1,0 +1,12 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+openllm
+dist/
+node_modules/
+*.log
+.idea/
+.vscode/

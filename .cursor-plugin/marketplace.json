@@ -1,0 +1,17 @@
+{
+  "name": "openllm-bots",
+  "owner": {
+    "name": "MindDragonLabs"
+  },
+  "metadata": {
+    "description": "Standardized OpenLLM orchestrator bots — one folder per bot (Grok, Cursor, Muse, Hermes, …) sharing the OpenLLM model fabric.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "openllm-orchestrator-cursor",
+      "source": "bots/cursor",
+      "description": "Cursor agent as orchestrator; OpenLLM as model fabric via openllm mcp."
+    }
+  ]
+}

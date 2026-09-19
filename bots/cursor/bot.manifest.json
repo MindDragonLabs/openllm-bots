@@ -1,0 +1,17 @@
+{
+  "id": "cursor",
+  "displayName": "Cursor agent",
+  "host": "cursor",
+  "status": "ready",
+  "description": "Cursor plugin openllm-orchestrator-cursor: the agent orchestrates; OpenLLM is model fabric via openllm mcp.",
+  "openllm": {
+    "mcp": "stdio",
+    "command": "openllm",
+    "args": ["mcp"],
+    "env": ["OPENLLM_API_KEY", "OPENLLM_CLOUD_ORIGIN"]
+  },
+  "paths": {
+    "skills": "skills",
+    "docs": "docs"
+  }
+}
