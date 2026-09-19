@@ -45,4 +45,4 @@ Verified against `openllm` CLI **2.6.36**: 43 tools (native gateway API, code/do
 - In-session tool names are prefixed: `mcp_openllm_<tool>`.
 - Hermes keeps its own connectors (terminal, file, git/`gh`, web, …). OpenLLM does not replace them.
 
-Shared architecture: [shared/architecture.md](../../shared/architecture.md). Status: `ready` — see [`bot.manifest.json`](./bot.manifest.json).
+Shared architecture: [shared/architecture.md](../../shared/architecture.md). Status: `ready` — see [`bot.manifest.json`](./bot.manifest.json). Other bots: [Grok](../grok), [Cursor](../cursor), [Muse](../muse). Contributor guide: [CONTRIBUTING.md](../../CONTRIBUTING.md).
