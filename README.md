@@ -71,6 +71,7 @@ Full setup: [bots/claude/docs/setup.md](./bots/claude/docs/setup.md)
 # ~/.codex/config.toml
 model = "grok/grok-4.7"
 model_provider = "openllm"
+model_reasoning_effort = "low"
 web_search = "disabled"
 
 [model_providers.openllm]

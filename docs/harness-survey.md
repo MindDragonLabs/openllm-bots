@@ -31,11 +31,11 @@ Per-harness setup docs live in `bots/<name>/docs/setup.md` when a bot folder exi
 | 16 | Devin CLI | `devin` | 3000.11.3 | — | pending (Devin Cloud session required) |
 | 17 | Grok CLI | `grok` | 1.0.41 | — | pending (xAI first-party; the Grok Bot path is row 12) |
 | 18 | Kimi CLI | `kimi` | 2.1.0 | — | pending (Moonshot first-party) |
-| 19 | Amp | — | — | not installed | **UNRESOLVED** — Sourcegraph; install path unclear |
-| 20 | Plandex | — | — | not installed | **UNTESTED** — BYO-key, OpenAI-compatible custom provider likely viable; releases stalled since 2025 |
-| 21 | Warp | — | — | not installed | **UNTESTED** — cloud-agent model, terminal agent config surface not verified |
-| 22 | Amazon Q Developer CLI | `q` | — | not installed | **UNTESTED** — Bedrock-first; custom provider surface not verified |
-| 23 | GitHub Copilot CLI | `copilot` | — | not installed | **UNTESTED** — GitHub-account auth; BYO-endpoint path not verified |
+| 19 | Amp | — | — | not installed | PENDING — Sourcegraph; install path unclear |
+| 20 | Plandex | — | — | not installed | PENDING — BYO-key, OpenAI-compatible custom provider likely viable; releases stalled since 2025 |
+| 21 | Warp | — | — | not installed | PENDING — cloud-agent model, terminal agent config surface not verified |
+| 22 | Amazon Q Developer CLI | `q` | — | not installed | PENDING — Bedrock-first; custom provider surface not verified |
+| 23 | GitHub Copilot CLI | `copilot` | — | not installed | PENDING — GitHub-account auth; BYO-endpoint path not verified |
 
 Count check: 12 LIVE + 2 gated/partial + 9 pending = 23.
 
