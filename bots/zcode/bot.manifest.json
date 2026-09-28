@@ -1,0 +1,22 @@
+{
+  "id": "zcode",
+  "displayName": "ZCode (zcode-app-cli)",
+  "host": "zcode",
+  "status": "ready",
+  "description": "ZCode CLI as orchestrator; OpenLLM as model fabric via a personal provider rule + manual model rules + defaultModelSelection in ~/.zcode/v2/provider_config.json.",
+  "openllm": {
+    "attach": "provider-config-json",
+    "config": "~/.zcode/v2/provider_config.json",
+    "env": [],
+    "note": "Provider rule with api.type openai-chat-completions at the gateway /v1 root; manual model rules are REQUIRED for catalog-unknown model ids; defaultModelSelection is REQUIRED or the first prompt fails with 'Select a model before continuing'."
+  },
+  "paths": {
+    "docs": "docs"
+  },
+  "verified": {
+    "date": "2026-09-28",
+    "host": "macmini (macOS 26, arm64)",
+    "versions": { "zcode-app-cli": "3.14.3-28", "zcode-runtime": "0.16.9" },
+    "result": "live — zcode --prompt completed through the local OpenLLM gateway (127.0.0.1:8787/v1)"
+  }
+}

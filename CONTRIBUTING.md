@@ -26,7 +26,7 @@ Thank you for helping with [openllm-bots](https://github.com/MindDragonLabs/open
    {
      "id": "<name>",
      "displayName": "Human name",
-     "host": "grok-bot | cursor | muse | hermes | other",
+     "host": "grok-bot | cursor | muse | hermes | claude-code | codex | opencode | pi | mcode | zcode | other",
      "status": "ready | stub | experimental",
      "description": "…",
      "openllm": {
