@@ -4,6 +4,8 @@ Every folder under [`bots/`](../bots/) is an **orchestrator**. OpenLLM is the sh
 
 This split is the same whether the host is Grok Bot, a Cursor agent, Muse, Hermes, or a future bot.
 
+Harnesses attach by one of two paths: **base-URL attach** (point the harness at a gateway endpoint — used by Claude Code, Codex, OpenCode, Pi, mcode, zcode, Goose, Aider, Crush) or **MCP attach** (the host spawns `openllm mcp` — used by Hermes, Cursor, Grok Bot). Muse uses an emulated skill + vault. See [openllm-connect.md](./openllm-connect.md#gateway-endpoints).
+
 ## Roles
 
 ```text
@@ -42,6 +44,7 @@ flowchart TB
   end
 
   user --> agent
+  agent -->|"base-URL attach<br/>(Claude Code, Codex, OpenCode, Pi, mcode, zcode, …)"| gw
   agent --> mcp
   mcp --> groups
   mcp --> gw

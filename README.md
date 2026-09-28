@@ -27,7 +27,7 @@ This layout replaces the flat plugin at [MindDragonLabs/grok-openllm-orchestrato
 - [Bots](#bots)
 - [Quick start](#quick-start)
 - [Which attach method?](#which-attach-method)
-- [Harness survey](#harness-survey)
+- [Harness survey](#harness-survey--all-23-harnesses)
 - [Adding a bot](#adding-a-bot)
 - [Scope](#in-scope--out-of-scope)
 - [Links](#links)
@@ -51,7 +51,7 @@ This layout replaces the flat plugin at [MindDragonLabs/grok-openllm-orchestrato
 
 ## Quick start
 
-Pick your harness. Every path needs an [OpenLLM](https://openllm.sh) account and API key first.
+Pick your harness. Every path needs an [OpenLLM](https://openllm.sh) account, an API key, and a running gateway — see [Gateway endpoints](./shared/openllm-connect.md#gateway-endpoints) for the local daemon (`http://127.0.0.1:8787`) and the hosted origin.
 
 ### Claude Code
 
@@ -59,7 +59,7 @@ Pick your harness. Every path needs an [OpenLLM](https://openllm.sh) account and
 export ANTHROPIC_BASE_URL="http://127.0.0.1:8787"    # gateway root, no /v1
 export ANTHROPIC_AUTH_TOKEN="$OPENLLM_API_KEY"
 unset ANTHROPIC_API_KEY
-claude -p --model claude-sonnet-4-6 "Reply with exactly: OPENLLM-OK"
+claude -p --model <model-id-from-your-gateway> "Reply with exactly: OPENLLM-OK"
 ```
 
 Full setup: [bots/claude/docs/setup.md](./bots/claude/docs/setup.md)
@@ -90,20 +90,20 @@ Full setup: [bots/codex/docs/setup.md](./bots/codex/docs/setup.md)
     "openllm": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "OpenLLM",
-      "options": { "baseURL": "http://127.0.0.1:8787/v1" },
+      "options": { "baseURL": "http://127.0.0.1:8787/v1", "apiKey": "{env:OPENLLM_API_KEY}" },
       "models": { "grok/grok-4.7": { "name": "Grok 4.7 via OpenLLM" } }
     }
   }
 }
 ```
 
-Run with `OPENCODE_API_KEY_openllm="$OPENLLM_API_KEY" opencode run --model 'openllm/grok/grok-4.7' "..."`.
+Run with `OPENLLM_API_KEY` exported; the `{env:OPENLLM_API_KEY}` reference resolves it at launch: `opencode run --model 'openllm/grok/grok-4.7' "..."`.
 
 Full setup: [bots/opencode/docs/setup.md](./bots/opencode/docs/setup.md)
 
 ### Pi
 
-Add an `openllm` provider to `~/.pi/agent/models.json` (`api: "openai-completions"`, `apiKey: "env:OPENLLM_API_KEY"`), then `pi --model openllm/grok/grok-4.5 -p "..."`.
+Add an `openllm` provider to `~/.pi/agent/models.json` (`api: "openai-completions"`, `apiKey: "env:OPENLLM_API_KEY"`), then `pi --model openllm/grok/grok-4.7 -p "..."` (verified live on 4.7; any id in your provider block works).
 
 Full setup: [bots/pi/docs/setup.md](./bots/pi/docs/setup.md)
 
@@ -196,7 +196,7 @@ Rules of thumb:
 
 **Pending / untested (9):** Cursor CLI, Devin CLI, Grok CLI, Kimi CLI, Amp, Plandex, Warp, Amazon Q Developer CLI, GitHub Copilot CLI.
 
-Plus Muse ([`bots/muse`](./bots/muse)), which attaches via an emulated skill + Secure Vault rather than a gateway endpoint.
+The counts reconcile row-by-row against the survey table (12 + 2 + 9 = 23). Adjacent tools that are not OpenLLM client harnesses (mmx, CommandCode, Claude Squad) are tracked separately in the survey. Plus Muse ([`bots/muse`](./bots/muse)), which attaches via an emulated skill + Secure Vault rather than a gateway endpoint.
 
 ## Adding a bot
 

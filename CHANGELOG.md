@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- README: Harness survey section linking docs/harness-survey.md, now itemizing all 23 harnesses by verdict.
+- Harness investigation program: audit of coding-agent CLIs for OpenLLM model-fabric attachment. Results land under `bots/` as each harness is verified.
 - Six new ready bots, all verified live 2026-09-28 against a local OpenLLM gateway (macOS arm64):
   - **Claude Code** (`bots/claude`) — `ANTHROPIC_BASE_URL`/`ANTHROPIC_AUTH_TOKEN` attach, claude 2.1.282.
   - **Codex CLI** (`bots/codex`) — `model_providers` block with Responses wire API, codex 0.157.0. Previous "BLOCKED" verdict superseded.
@@ -20,17 +22,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Audit follow-ups (Opus 5.5 review): survey table now carries the three MCP bots (Hermes, Cursor plugin, Grok Bot) as numbered rows so README counts reconcile row-by-row (12 live · 2 gated · 9 pending = 23); mmx/CommandCode/Claude Squad moved to an "adjacent tools" section. Added "Gateway endpoints" section to shared/openllm-connect.md (local daemon vs hosted origin, /v1 vs root rule, loopback auth caveat); per-host table covers all ten bots. OpenCode key guidance switched to the documented `{env:OPENLLM_API_KEY}` options form. Codex setup now says where top-level keys go in config.toml (before any `[table]`). zcode README snippet includes the kimi manual rule. Pi docs aligned to grok-4.7 (re-verified live). Claude Code docs use a gateway-catalog model-id placeholder instead of an invented id, and recommend a wrapper script over `.env`. Architecture doc shows the base-URL attach path alongside MCP.
+- All OpenLLM CLI links point at the prerelease branch: `https://github.com/openllmsh/cli/tree/prerelease` (8 files).
 - Harness survey expanded from 18 to 23 harnesses; codex verdict updated BLOCKED → LIVE (Responses wire API + `web_search = "disabled"`), opencode pending → LIVE, zcode added as LIVE. [docs/harness-survey.md](./docs/harness-survey.md).
 - README rebuilt: badge row, table of contents, 10-bot table with attach methods and verification dates, per-harness quick starts, "Which attach method?" matrix. [README.md](./README.md).
 - CONTRIBUTING host enum extended: `claude-code | codex | opencode | pi | mcode | zcode` join the list.
 
-### Kept from earlier Unreleased entries
 
-- README: Harness survey section linking docs/harness-survey.md (live attach methods, blocked harnesses with reasons).
-
-- Harness investigation program: audit of 20 coding-agent CLIs (Claude Code, Codex CLI, Devin CLI, CommandCode, MiniMax CLI, OpenCode, Cursor CLI, Grok CLI, Pi CLI, and more) for OpenLLM model-fabric attachment. Results land under `bots/` as each harness is verified.
-
-- All OpenLLM CLI links now point at the prerelease branch: `https://github.com/openllmsh/cli/tree/prerelease` (8 files).
+### Fixed
 
 - Devin follow-ups — Muse CLI auth/usage/latency/URL checks; fix OpenLLM install URL; Hermes CLI version check.
 
@@ -41,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] — 2026-09-19
 
+(No git tag exists yet; link refs restored when the first tag is cut.)
+
 ### Added
 
 - Monorepo layout: `shared/` plus one folder per orchestrator under `bots/`.
@@ -50,6 +51,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Root `.cursor-plugin/marketplace.json` listing `bots/cursor` so this repo can be a multi-plugin marketplace source.
 - **Muse** and **Hermes** stub folders (same OpenLLM fabric; no fake skills).
 - MIT license, contributing guide, and [MIGRATION.md](./MIGRATION.md).
-
-[Unreleased]: https://github.com/MindDragonLabs/openllm-bots/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/MindDragonLabs/openllm-bots/releases/tag/v0.1.0

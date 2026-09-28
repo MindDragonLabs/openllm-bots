@@ -22,6 +22,8 @@ Thank you for helping with [openllm-bots](https://github.com/MindDragonLabs/open
 
 3. Fill `bot.manifest.json` using this schema:
 
+   **Shape A — MCP attach** (host spawns `openllm mcp`):
+
    ```json
    {
      "id": "<name>",
@@ -42,9 +44,38 @@ Thank you for helping with [openllm-bots](https://github.com/MindDragonLabs/open
    }
    ```
 
+   **Shape B — base-URL/provider attach** (harness points at a gateway endpoint):
+
+   ```json
+   {
+     "id": "<name>",
+     "displayName": "Human name",
+     "host": "…same enum…",
+     "status": "ready | stub | experimental",
+     "description": "…",
+     "openllm": {
+       "attach": "<kind: anthropic-base-url | openai-responses-provider | opencode-json-provider | models-json-provider | custom-provider | provider-config-json>",
+       "config": "<where the config lives, e.g. ~/.codex/config.toml [model_providers.openllm]>",
+       "env": ["OPENLLM_API_KEY"],
+       "note": "<one-line attach gotcha>"
+     },
+     "paths": { "docs": "docs" },
+     "verified": {
+       "date": "YYYY-MM-DD",
+       "host": "OS + arch",
+       "versions": { "<binary>": "<version>" },
+       "result": "live — <what completed>"
+     }
+   }
+   ```
+
+   `verified` is optional but encouraged: record what was actually run, on what, and when. Keep `args` as argv tokens (no shell strings).
+
    For a **stub**, `status` is `"stub"`. The README should say the folder is reserved, point at [shared/architecture.md](./shared/architecture.md) and [shared/openllm-connect.md](./shared/openllm-connect.md), and skip fake skills.
 
-   Muse is an exception to the stdio `openllm mcp` block above: it attaches with an emulated workspace skill + Secure Vault. See [`bots/muse/bot.manifest.json`](./bots/muse/bot.manifest.json).
+   Muse is an exception to both shapes: it attaches with an emulated workspace skill + Secure Vault. See [`bots/muse/bot.manifest.json`](./bots/muse/bot.manifest.json).
+
+`skills/` is optional for base-URL bots — many attach purely through harness config and need only `README.md`, `bot.manifest.json`, and `docs/setup.md`.
 
 4. For a **ready** bot, add host-specific material:
 

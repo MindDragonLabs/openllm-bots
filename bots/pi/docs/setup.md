@@ -38,7 +38,7 @@ Edit `~/.pi/agent/models.json`. If it exists, merge the `openllm` block into `pr
       "models": [
         { "id": "grok/grok-4.5", "name": "Grok 4.5 via OpenLLM", "context": 200000 },
         { "id": "grok/grok-4.6", "name": "Grok 4.6 via OpenLLM", "context": 200000 },
-        { "id": "kimi_code/kimi-for-coding-highspeed", "name": "Kimi K3 highspeed via OpenLLM", "context": 256000 },
+        { "id": "kimi_code/kimi-for-coding-highspeed", "name": "Kimi for Coding highspeed via OpenLLM", "context": 256000 },
         { "id": "kimi_code/k3", "name": "Kimi K3 via OpenLLM", "context": 256000 }
       ]
     }
@@ -59,7 +59,7 @@ Field notes:
 ## 3. Verify headless
 
 ```sh
-pi --model openllm/grok/grok-4.5 -p "Reply with exactly: OPENLLM-OK"
+pi --model openllm/grok/grok-4.7 -p "Reply with exactly: OPENLLM-OK"
 ```
 
 Expected: `OPENLLM-OK`. The `--model` value is `<provider>/<model-id>`.

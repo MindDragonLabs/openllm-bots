@@ -7,7 +7,9 @@
   "openllm": {
     "attach": "models-json-provider",
     "config": "~/.pi/agent/models.json",
-    "env": ["OPENLLM_API_KEY"],
+    "env": [
+      "OPENLLM_API_KEY"
+    ],
     "note": "Provider entry with baseUrl at the gateway /v1 root, api openai-completions, apiKey env:OPENLLM_API_KEY. Set compat flags for gateways that reject developer role or reasoning-effort fields."
   },
   "paths": {
@@ -16,7 +18,9 @@
   "verified": {
     "date": "2026-09-28",
     "host": "macOS 26, arm64",
-    "versions": { "pi": "0.73.1" },
-    "result": "live — pi --model openllm/grok/grok-4.5 -p completed through the local OpenLLM gateway"
+    "versions": {
+      "pi": "0.73.1"
+    },
+    "result": "live \u2014 pi --model openllm/grok/grok-4.7 -p completed through the local OpenLLM gateway (also verified on grok-4.5)"
   }
 }

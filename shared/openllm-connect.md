@@ -6,6 +6,23 @@ Architecture (orchestrator vs model fabric): [architecture.md](./architecture.md
 
 Do **not** commit API keys. Do **not** invent a remote MCP URL.
 
+## Gateway endpoints
+
+The base-URL attach paths (Claude Code, Codex, OpenCode, Pi, mcode, zcode, Goose, Aider, Crush) talk to an OpenLLM **gateway endpoint**, not to `openllm mcp`. Two shapes:
+
+| Endpoint | URL | Notes |
+| --- | --- | --- |
+| Local daemon | `http://127.0.0.1:8787` | Installed with the OpenLLM CLI. OpenAI-compatible `/v1` (chat completions, models, responses) and an Anthropic-compatible root for Anthropic-wire harnesses. Runs on the machine you work from. |
+| Hosted origin | `https://openllm.sh` (`OPENLLM_CLOUD_ORIGIN`) | The cloud origin. Subscription traffic OpenLLM documents as local-daemon-only stays on the local daemon — do not point subscription-backed traffic at the hosted origin. |
+
+Which URL goes where:
+
+- **OpenAI-wire harnesses** (OpenCode, Pi, Aider, Crush, Goose, zcode, Codex): base URL = `<gateway>/v1`.
+- **Anthropic-wire harnesses** (Claude Code, mcode): base URL = the gateway **root**, no `/v1`.
+- **MCP hosts** (Hermes, Cursor, Grok Bot): spawn `openllm mcp`; no base URL needed.
+
+The local daemon does not enforce request authentication on loopback (`127.0.0.1`). That is convenient for verification but means a local pass does not validate key transport — test your key path against an authenticating endpoint before relying on it.
+
 ## Prerequisites
 
 1. An [OpenLLM](https://openllm.sh) account.
@@ -105,7 +122,13 @@ Names can shift; trust the live list:
 
 | Host | How OpenLLM is attached |
 | --- | --- |
+| Claude Code | `ANTHROPIC_BASE_URL` + `ANTHROPIC_AUTH_TOKEN` (gateway root). See [bots/claude/docs/setup.md](../bots/claude/docs/setup.md). |
+| Codex CLI | `model_providers` block (Responses wire API). See [bots/codex/docs/setup.md](../bots/codex/docs/setup.md). |
+| OpenCode | `opencode.json` provider. See [bots/opencode/docs/setup.md](../bots/opencode/docs/setup.md). |
+| Pi | `models.json` provider. See [bots/pi/docs/setup.md](../bots/pi/docs/setup.md). |
+| MiniMax Code | `mcode provider add --api-format anthropic-messages`. See [bots/mcode/docs/setup.md](../bots/mcode/docs/setup.md). |
+| ZCode | `~/.zcode/v2/provider_config.json`. See [bots/zcode/docs/setup.md](../bots/zcode/docs/setup.md). |
 | Cursor | Plugin `mcp.json` + Plugins → Configure. See [bots/cursor](../bots/cursor/README.md). |
 | Grok Bot | Custom MCP in chat. Template share cannot pack it. See [bots/grok/docs/setup.md](../bots/grok/docs/setup.md). |
+| Hermes | `hermes mcp add openllm` (stdio `openllm mcp`). See [bots/hermes/docs/setup.md](../bots/hermes/docs/setup.md). |
 | Muse | Emulated `openllm` workspace skill + Secure Vault (not `openllm mcp`). See [bots/muse](../bots/muse/README.md). |
-| Hermes | Same fabric when that folder leaves stub status. |

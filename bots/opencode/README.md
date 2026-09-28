@@ -28,7 +28,8 @@ Add an `openllm` provider to `opencode.json` (project) or `~/.config/opencode/op
       "npm": "@ai-sdk/openai-compatible",
       "name": "OpenLLM",
       "options": {
-        "baseURL": "http://127.0.0.1:8787/v1"
+        "baseURL": "http://127.0.0.1:8787/v1",
+        "apiKey": "{env:OPENLLM_API_KEY}"
       },
       "models": {
         "grok/grok-4.7": { "name": "Grok 4.7 via OpenLLM" },
@@ -39,10 +40,10 @@ Add an `openllm` provider to `opencode.json` (project) or `~/.config/opencode/op
 }
 ```
 
-The key comes from the environment — **no `apiKey` in the file**:
+The `apiKey` value is a reference, not a secret: `{env:OPENLLM_API_KEY}` resolves the exported variable at launch — **the key itself never enters the file**:
 
 ```sh
-export OPENCODE_API_KEY_openllm="$OPENLLM_API_KEY"
+export OPENLLM_API_KEY="sk-llm-..."
 ```
 
 Verify headless:
@@ -56,7 +57,7 @@ Full steps and pitfalls: [docs/setup.md](./docs/setup.md).
 ## Gotchas
 
 - **Pass `--model` explicitly on `run`.** Without it opencode uses its configured default (often a subscription agent), which can fail with `Insufficient account funds` instead of routing to OpenLLM. You can also set `"model": "openllm/<id>"` in the config to make it the default.
-- **`OPENCODE_API_KEY_openllm`** (lowercase provider id appended) is the env-var pattern opencode resolves for a custom provider key. It keeps the secret out of `opencode.json`.
+- **`"apiKey": "{env:OPENLLM_API_KEY}"`** in `options` is the documented way to pass a key to a custom provider: the reference resolves the exported variable at launch, keeping the secret out of `opencode.json`.
 - **`/v1` root** in `baseURL`.
 - **Slash-containing model ids are fine** as JSON keys — `grok/grok-4.7` works; reference it as `openllm/grok/grok-4.7` on the CLI.
 - `/connect` stores auth for known providers; a config-defined provider with an env key needs no `/connect` step.

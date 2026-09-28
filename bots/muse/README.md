@@ -8,7 +8,7 @@ Shared docs ([architecture](../../shared/architecture.md), [OpenLLM connect](../
 
 ---
 
-# Muse × OpenLLM Integration
+## Muse × OpenLLM Integration
 
 A setup and training repository that teaches any Muse instance how to integrate
 with [openllm.sh](https://openllm.sh) — a unified LLM gateway (one

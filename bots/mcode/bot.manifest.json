@@ -7,7 +7,14 @@
   "openllm": {
     "attach": "custom-provider",
     "command": "mcode provider add",
-    "args": ["--api-format anthropic-messages", "--base-url <gateway-root>", "--api-key-env OPENLLM_API_KEY"],
+    "args": [
+      "--api-format",
+      "anthropic-messages",
+      "--base-url",
+      "<gateway-root>",
+      "--api-key-env",
+      "OPENLLM_API_KEY"
+    ],
     "note": "anthropic-messages works against the gateway root (no /v1); openai-completions against /v1 is rejected by the gateway (400 schema)."
   },
   "paths": {
@@ -16,7 +23,9 @@
   "verified": {
     "date": "2026-09-28",
     "host": "macOS 26, arm64",
-    "versions": { "mcode": "0.4.12" },
-    "result": "live — mcode exec completed through the local OpenLLM gateway"
+    "versions": {
+      "mcode": "0.4.12"
+    },
+    "result": "live \u2014 mcode exec completed through the local OpenLLM gateway"
   }
 }
