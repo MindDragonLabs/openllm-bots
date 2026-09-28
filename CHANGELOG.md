@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Six new ready bots, all verified live 2026-09-28 against a local OpenLLM gateway (macmini, macOS arm64):
+- Six new ready bots, all verified live 2026-09-28 against a local OpenLLM gateway (macOS arm64):
   - **Claude Code** (`bots/claude`) — `ANTHROPIC_BASE_URL`/`ANTHROPIC_AUTH_TOKEN` attach, claude 2.1.282.
   - **Codex CLI** (`bots/codex`) — `model_providers` block with Responses wire API, codex 0.157.0. Previous "BLOCKED" verdict superseded.
   - **OpenCode** (`bots/opencode`) — `@ai-sdk/openai-compatible` provider in `opencode.json`, opencode 1.15.7.

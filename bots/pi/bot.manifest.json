@@ -15,7 +15,7 @@
   },
   "verified": {
     "date": "2026-09-28",
-    "host": "macmini (macOS 26, arm64)",
+    "host": "macOS 26, arm64",
     "versions": { "pi": "0.73.1" },
     "result": "live — pi --model openllm/grok/grok-4.5 -p completed through the local OpenLLM gateway"
   }

@@ -14,7 +14,7 @@
   },
   "verified": {
     "date": "2026-09-28",
-    "host": "macmini (macOS 26, arm64)",
+    "host": "macOS 26, arm64",
     "versions": { "claude": "2.1.282" },
     "result": "live — headless completion routed through the local OpenLLM gateway (127.0.0.1:8787)"
   }

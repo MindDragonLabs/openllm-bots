@@ -15,7 +15,7 @@
   },
   "verified": {
     "date": "2026-09-28",
-    "host": "macmini (macOS 26, arm64)",
+    "host": "macOS 26, arm64",
     "versions": { "codex": "0.157.0" },
     "result": "live — codex exec completed through the local OpenLLM gateway (127.0.0.1:8787/v1)"
   }

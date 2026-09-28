@@ -15,7 +15,7 @@
   },
   "verified": {
     "date": "2026-09-28",
-    "host": "macmini (macOS 26, arm64)",
+    "host": "macOS 26, arm64",
     "versions": { "mcode": "0.4.12" },
     "result": "live — mcode exec completed through the local OpenLLM gateway"
   }
