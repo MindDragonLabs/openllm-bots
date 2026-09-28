@@ -1,6 +1,6 @@
 # Harness Survey — OpenLLM Model Fabric Attachment
 
-Living document. Last full pass: **2026-09-28** (macmini, macOS 26, arm64). Repo: MindDragonLabs/openllm-bots.
+Living document. Last full pass: **2026-09-28** (macOS 26, arm64). Repo: MindDragonLabs/openllm-bots.
 
 Goal: identify the top coding-agent harnesses, test each for OpenLLM attachment, record verdicts.
 **Live** = a real completion routed through the OpenLLM gateway (`http://127.0.0.1:8787`, OpenAI-compatible `/v1` + Anthropic-compat root).
@@ -43,7 +43,7 @@ Per-harness setup docs live in `bots/<name>/docs/setup.md` when a bot folder exi
 4. **MCP (stdio)** — Hermes ([bots/hermes](../bots/hermes)), Cursor ([bots/cursor](../bots/cursor)). `openllm mcp` exposes the gateway tool surface.
 5. **Emulated skill + vault** — Muse ([bots/muse](../bots/muse)).
 
-## Credentials state (macmini, survey host)
+## Credentials state (survey host)
 
 - OpenLLM key: `~/.openllm/.env` (`OPENLLM_API_KEY`) — never written into this repo.
 - mcode home: `~/.minimax-code/` (v0.4.12); custom provider `openllm` registered.

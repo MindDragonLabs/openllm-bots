@@ -171,13 +171,32 @@ Rules of thumb:
 - **Discover model ids live** (`curl <gateway>/v1/models`) — do not invent them.
 - **Direct model ids beat chain aliases** for reliability (`grok/grok-4.7` over `ultra`).
 
-## Harness survey
+## Harness survey — all 23 harnesses
 
-[docs/harness-survey.md](./docs/harness-survey.md) tracks 23 harnesses and how each attaches to OpenLLM — verified live, blocked with reasons, or pending. Highlights:
+[docs/harness-survey.md](./docs/harness-survey.md) tracks **all 23 harnesses** tested for OpenLLM attachment — verified live, blocked with reasons, or pending. The full table (versions, attach methods, verdicts) lives there; this is the summary.
 
-- **Live:** Claude Code, Codex, OpenCode, Pi, mcode, zcode, Goose, Aider, Crush, plus Hermes/Cursor/Grok Bot via MCP.
-- **Blocked/gated:** Gemini CLI (Google-protocol only). Qwen Code reaches the gateway but its tool schema is rejected (422).
-- **Pending/untested:** Cursor CLI, Devin, Grok CLI, Kimi CLI, Amp, Plandex, Warp, Amazon Q, Copilot CLI.
+**Live (12):**
+
+| Harness | Attach | Bot folder |
+| --- | --- | --- |
+| Claude Code | Anthropic-compat base URL | [`bots/claude`](./bots/claude) |
+| Codex CLI | Responses-API provider block | [`bots/codex`](./bots/codex) |
+| OpenCode | `@ai-sdk/openai-compatible` | [`bots/opencode`](./bots/opencode) |
+| Pi | `models.json` custom provider | [`bots/pi`](./bots/pi) |
+| MiniMax Code | `anthropic-messages` custom provider | [`bots/mcode`](./bots/mcode) |
+| ZCode | `provider_config.json` rule | [`bots/zcode`](./bots/zcode) |
+| Goose | `GOOSE_PROVIDER=openai` + base URL | — |
+| Aider | `--openai-api-base` | — |
+| Crush | `crush.json` provider | — |
+| Hermes | `openllm mcp` (stdio) | [`bots/hermes`](./bots/hermes) |
+| Cursor | `openllm mcp` (plugin) | [`bots/cursor`](./bots/cursor) |
+| Grok Bot | `openllm mcp` (custom MCP) | [`bots/grok`](./bots/grok) |
+
+**Blocked / gated (2):** Gemini CLI (Google-protocol auth only), Qwen Code (reaches the gateway; tool schema rejected with 422).
+
+**Pending / untested (9):** Cursor CLI, Devin CLI, Grok CLI, Kimi CLI, Amp, Plandex, Warp, Amazon Q Developer CLI, GitHub Copilot CLI.
+
+Plus Muse ([`bots/muse`](./bots/muse)), which attaches via an emulated skill + Secure Vault rather than a gateway endpoint.
 
 ## Adding a bot
 
