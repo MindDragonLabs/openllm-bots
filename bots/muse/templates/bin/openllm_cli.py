@@ -147,6 +147,24 @@ def _load_json_response(resp):
     return json.load(resp)
 
 
+class _NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Block redirects: the bearer must never be re-sent to a different origin."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        print(
+            "Refusing redirect to %s (credentials must not cross origins). "
+            "Set --base-url to the final URL." % newurl,
+            file=sys.stderr,
+        )
+        sys.exit(2)
+
+
+_opener = urllib.request.build_opener(_NoRedirectHandler)
+
+
+def _open(req, timeout):
+    return _opener.open(req, timeout=timeout)
+
+
 def _http_error_exit(err):
     body = err.read().decode(errors="replace")[:500]
     print("HTTP %s: %s" % (err.code, body), file=sys.stderr)
@@ -161,7 +179,7 @@ def _post(base_url, api_key, path, payload, timeout=120):
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with _open(req, timeout) as resp:
             return _load_json_response(resp)
     except urllib.error.HTTPError as e:
         _http_error_exit(e)
@@ -175,7 +193,7 @@ def _get(base_url, api_key, path, timeout=30):
         base_url.rstrip("/") + path, headers=_headers(api_key), method="GET"
     )
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with _open(req, timeout) as resp:
             return _load_json_response(resp)
     except urllib.error.HTTPError as e:
         _http_error_exit(e)

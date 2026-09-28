@@ -66,12 +66,15 @@ Expected: `OPENLLM-OK`. **Pass `--model` explicitly** — without it opencode us
 
 Add the model to the config so the TUI and `run` use it without `--model`:
 
+The full provider block from step 2 stays as-is; add one top-level key beside it:
+
 ```json
 {
-  "model": "openllm/grok/grok-4.7",
-  "provider": { "openllm": { "...": "as above" } }
+  "model": "openllm/grok/grok-4.7"
 }
 ```
+
+`model` sits at the root of `opencode.json`, next to `provider` — not inside it.
 
 ## 5. Pick models from the catalog
 

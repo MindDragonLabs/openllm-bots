@@ -21,6 +21,6 @@
     "versions": {
       "opencode": "1.15.7"
     },
-    "result": "live \u2014 opencode run --model openllm/grok/grok-4.7 completed through the local OpenLLM gateway"
+    "result": "live — opencode run --model openllm/grok/grok-4.7 completed through the local OpenLLM gateway"
   }
 }

@@ -40,7 +40,7 @@ unset ANTHROPIC_API_KEY
 claude -p --model <gateway-model-id> "Reply with exactly: OPENLLM-OK"
 ```
 
-Replace `<gateway-model-id>` with an id your gateway actually lists (step 4) — do not invent one. Expected: `OPENLLM-OK`. On success every subsequent `claude` session in this shell routes through OpenLLM.
+Replace `<gateway-model-id>` with an id your gateway actually lists (see "4. Model ids" below) — do not invent one. Expected: `OPENLLM-OK`. On success every subsequent `claude` session in this shell routes through OpenLLM.
 
 ## 4. Model ids
 
@@ -65,11 +65,15 @@ unset ANTHROPIC_API_KEY
 exec claude "$@"
 ```
 
+## Background model note
+
+Interactive Claude Code also fires background requests to a small fast model (haiku-class). Behind a gateway, set `ANTHROPIC_DEFAULT_HAIKU_MODEL` (or `ANTHROPIC_SMALL_FAST_MODEL` on older builds) to a gateway id if those calls misroute. Only headless `-p` was verified for this bot.
+
 ## Troubleshooting
 
 | Symptom | Cause | Fix |
 | --- | --- | --- |
-| `claude.ai connectors are disabled...` warning | `ANTHROPIC_API_KEY` still set | `unset ANTHROPIC_API_KEY`; rely on `ANTHROPIC_AUTH_TOKEN` |
+| Warning that connectors are disabled because an auth source is set | `ANTHROPIC_API_KEY` still set | `unset ANTHROPIC_API_KEY`; rely on `ANTHROPIC_AUTH_TOKEN` |
 | 401 / 403 from gateway | wrong or missing token | Re-export `ANTHROPIC_AUTH_TOKEN="$OPENLLM_API_KEY"` |
 | 404 on requests | base URL has `/v1` (or another path) appended | Use the bare gateway root |
 | `unknown model` hard error | id not in gateway catalog | Pick an id from `/v1/models` |

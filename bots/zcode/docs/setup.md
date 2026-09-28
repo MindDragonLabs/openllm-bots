@@ -92,9 +92,12 @@ ZCode reads personal providers from `~/.zcode/v2/provider_config.json` (shared w
 }
 ```
 
-Then lock the file down:
+Lock the file down **before** writing the key into it (or chmod immediately after — the window between write and chmod also exposes the key):
 
 ```sh
+umask 077   # in the shell you edit from
+# ... edit the file (key lands 600 from the start)
+# already written? close the window now:
 chmod 600 ~/.zcode/v2/provider_config.json
 ```
 

@@ -99,7 +99,7 @@ Thank you for helping with [openllm-bots](https://github.com/MindDragonLabs/open
 
    `plugin.json` `homepage` and `repository` should be `https://github.com/MindDragonLabs/openllm-bots`. Logo paths must stay inside the plugin directory (no `..`). Variables stay `OPENLLM_API_KEY` and `OPENLLM_CLOUD_ORIGIN` (default `https://openllm.sh`). Stdio config should match [shared/mcp.stdio.example.json](./shared/mcp.stdio.example.json).
 
-6. Update the bots table in [README.md](./README.md) and add a [CHANGELOG.md](./CHANGELOG.md) entry.
+6. Update the bots table in [README.md](./README.md), add or update the harness's row in [docs/harness-survey.md](./docs/harness-survey.md), and add a [CHANGELOG.md](./CHANGELOG.md) entry.
 
 ## What not to put in a bot folder
 

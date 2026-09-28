@@ -1,6 +1,6 @@
 # Harness Survey — OpenLLM Model Fabric Attachment
 
-Living document. Last full pass: **2026-09-28** (macOS 26, arm64). Repo: MindDragonLabs/openllm-bots.
+Living document. Newest verifications: **2026-09-28** (macOS 26, arm64); rows carry their own dates. Repo: MindDragonLabs/openllm-bots.
 
 Goal: identify the top coding-agent harnesses, test each for OpenLLM attachment, record verdicts.
 **Live** = a real completion routed through the OpenLLM gateway (`http://127.0.0.1:8787`, OpenAI-compatible `/v1` + Anthropic-compat root) or, for MCP hosts, a connected `openllm mcp` session.
@@ -66,7 +66,7 @@ Plus Muse ([bots/muse](../bots/muse)), a bot folder whose attach path is an emul
 ## Gotchas found
 
 - **Loopback does not prove key transport.** The local daemon does not enforce auth on `127.0.0.1`; a successful pass there does not validate the key path. Test against an authenticating endpoint before relying on a key form.
-- **OpenLLM chain aliases route per-harness.** `lite` → claude_code (declined) + chatgpt (needs codex signed in). Direct model ids (`grok/grok-4.5+`, `kimi_code/*`) are the reliable path.
+- **OpenLLM chain aliases route per-harness.** `lite` → claude_code (declined) + chatgpt (needs codex signed in). Direct model ids (`grok/grok-4.5` and newer, `kimi_code/*`) are the reliable path.
 - **Codex was blocked, now works.** Requires `wire_api = "responses"` (chat removed in 0.153+), `env_key` (not hardcoded key), and `web_search = "disabled"` — the daemon rejects codex's cache-only web-search policy with `unsupported_web_search_policy`.
 - **mcode needs Anthropic wire format.** `openai-completions` requests from mcode are rejected by the gateway with a 400 schema error; `anthropic-messages` against the root passes.
 - **zcode needs three config parts.** Provider rule + manual model rule per catalog-unknown id + `defaultModelSelection`, or the first prompt fails with `Select a model before continuing`.

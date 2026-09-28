@@ -2,7 +2,7 @@
 
 **Orchestrator:** OpenCode (`opencode`)
 **Model fabric:** [OpenLLM](https://openllm.sh) via an `@ai-sdk/openai-compatible` provider in `opencode.json`
-**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 against opencode 1.15.7
+**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 (loopback gateway; see caveat) against opencode 1.15.7
 
 OpenCode keeps planning, its Build/Plan agents, permissions, LSP, and sessions. OpenLLM becomes the model fabric through a provider block using the OpenAI-compatible AI SDK package.
 
@@ -53,6 +53,10 @@ opencode run --model 'openllm/grok/grok-4.7' "Reply with exactly: OPENLLM-OK"
 ```
 
 Full steps and pitfalls: [docs/setup.md](./docs/setup.md).
+
+## Loopback caveat
+
+"Verified live" means a real completion routed through an OpenLLM gateway on the date shown. The survey gateway runs on loopback, where the daemon does not enforce request authentication — the runs prove routing and request shape, not key transport. See [the survey method note](../../docs/harness-survey.md).
 
 ## Gotchas
 

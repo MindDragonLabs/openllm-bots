@@ -30,16 +30,17 @@ Edit `~/.pi/agent/models.json`. If it exists, merge the `openllm` block into `pr
     "openllm": {
       "baseUrl": "http://127.0.0.1:8787/v1",
       "api": "openai-completions",
-      "apiKey": "env:OPENLLM_API_KEY",
+      "apiKey": "OPENLLM_API_KEY",
       "compat": {
         "supportsDeveloperRole": false,
         "supportsReasoningEffort": false
       },
       "models": [
-        { "id": "grok/grok-4.5", "name": "Grok 4.5 via OpenLLM", "context": 200000 },
-        { "id": "grok/grok-4.6", "name": "Grok 4.6 via OpenLLM", "context": 200000 },
-        { "id": "kimi_code/kimi-for-coding-highspeed", "name": "Kimi for Coding highspeed via OpenLLM", "context": 256000 },
-        { "id": "kimi_code/k3", "name": "Kimi K3 via OpenLLM", "context": 256000 }
+        { "id": "grok/grok-4.7", "name": "Grok 4.7 via OpenLLM", "contextWindow": 200000 },
+        { "id": "grok/grok-4.5", "name": "Grok 4.5 via OpenLLM", "contextWindow": 200000 },
+        { "id": "grok/grok-4.6", "name": "Grok 4.6 via OpenLLM", "contextWindow": 200000 },
+        { "id": "kimi_code/kimi-for-coding-highspeed", "name": "Kimi for Coding highspeed via OpenLLM", "contextWindow": 256000 },
+        { "id": "kimi_code/k3", "name": "Kimi K3 via OpenLLM", "contextWindow": 256000 }
       ]
     }
   }
@@ -50,11 +51,11 @@ Field notes:
 
 | Field | Value | Why |
 | --- | --- | --- |
-| `apiKey` | `"env:OPENLLM_API_KEY"` | Key read from env at launch; nothing secret in the file |
+| `apiKey` | `"OPENLLM_API_KEY"` (bare variable name) | Key read from env at launch; nothing secret in the file |
 | `api` | `"openai-completions"` | OpenAI chat-completions wire format against `/v1` |
 | `compat.supportsDeveloperRole` | `false` | Stops pi sending a `developer` role message the gateway rejects |
 | `compat.supportsReasoningEffort` | `false` | Stops pi sending `reasoning_effort` fields the gateway may reject |
-| `context` | real model context | Pi's context meter uses it; wrong values skew the display |
+| `contextWindow` | real model context | Pi's context meter uses it; wrong values skew the display |
 
 ## 3. Verify headless
 
@@ -66,7 +67,7 @@ Expected: `OPENLLM-OK`. The `--model` value is `<provider>/<model-id>`.
 
 ## 4. Use it day to day
 
-- Interactive: launch `pi`, then `/model openllm/grok/grok-4.5` (or pick from the model list).
+- Interactive: launch `pi`, then `/model openllm/grok/grok-4.7` (or pick from the model list).
 - Headless/scripted: `pi --model openllm/<id> -p "<task>"`.
 - Extensions (including MCP) keep working; the provider change only moves the endpoint.
 
@@ -87,4 +88,4 @@ Mirror the ids you want into the provider's `models` array. Do not guess ids.
 | 401 from gateway | `OPENLLM_API_KEY` not exported | Export it in the shell that launches pi |
 | `unknown provider` on `--model` | provider name typo | `--model openllm/<id>` — the key in `providers` is the prefix |
 | Model listed but calls fail | id not actually in gateway catalog | Verify with `/v1/models`; remove dead entries |
-| Context meter wildly wrong | wrong `context` value | Set the real gateway context size per model |
+| Context meter wildly wrong | wrong `contextWindow` value | Set the real gateway context size per model |
