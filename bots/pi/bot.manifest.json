@@ -1,0 +1,22 @@
+{
+  "id": "pi",
+  "displayName": "Pi",
+  "host": "pi",
+  "status": "ready",
+  "description": "Pi coding agent as orchestrator; OpenLLM as model fabric via a custom provider (openai-completions) in ~/.pi/agent/models.json.",
+  "openllm": {
+    "attach": "models-json-provider",
+    "config": "~/.pi/agent/models.json",
+    "env": ["OPENLLM_API_KEY"],
+    "note": "Provider entry with baseUrl at the gateway /v1 root, api openai-completions, apiKey env:OPENLLM_API_KEY. Set compat flags for gateways that reject developer role or reasoning-effort fields."
+  },
+  "paths": {
+    "docs": "docs"
+  },
+  "verified": {
+    "date": "2026-09-28",
+    "host": "macmini (macOS 26, arm64)",
+    "versions": { "pi": "0.73.1" },
+    "result": "live — pi --model openllm/grok/grok-4.5 -p completed through the local OpenLLM gateway"
+  }
+}

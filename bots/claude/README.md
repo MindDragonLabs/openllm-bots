@@ -1,0 +1,51 @@
+# Claude Code
+
+**Orchestrator:** Claude Code (`claude`)
+**Model fabric:** [OpenLLM](https://openllm.sh) via Anthropic-compatible base URL
+**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 against Claude Code 2.1.282
+
+Claude Code keeps planning, tools, approvals, and file/git access. OpenLLM becomes the model fabric: every completion is routed through the OpenLLM gateway instead of a first-party Anthropic endpoint.
+
+| Role | Who | Does |
+| --- | --- | --- |
+| **Orchestrator** | Claude Code | Plans, tools, approvals, terminal/files/git, subagents, skills |
+| **Model fabric** | OpenLLM gateway | Models, completions, routing across your existing providers |
+
+```text
+claude  →  ANTHROPIC_BASE_URL  →  OpenLLM gateway  →  models you already pay for
+```
+
+Shared docs: [architecture](../../shared/architecture.md) · [connect rules](../../shared/openllm-connect.md) · [harness survey](../../docs/harness-survey.md)
+
+## Attach (summary)
+
+Export two environment variables before launching `claude`:
+
+```sh
+export ANTHROPIC_BASE_URL="http://127.0.0.1:8787"      # OpenLLM gateway root — no /v1 suffix
+export ANTHROPIC_AUTH_TOKEN="$OPENLLM_API_KEY"          # OpenLLM API key, not an Anthropic key
+unset ANTHROPIC_API_KEY                                  # avoid conflicting auth sources
+```
+
+Verify headless:
+
+```sh
+claude -p --model claude-sonnet-4-6 "Reply with exactly: OPENLLM-OK"
+```
+
+A benign warning about claude.ai connectors may appear when `ANTHROPIC_API_KEY` is set; unset it (as above) and the gateway auth token takes over.
+
+Copy-paste steps, model ids, and pitfalls: [docs/setup.md](./docs/setup.md).
+
+## What changes
+
+- Requests go to the OpenLLM gateway; OpenLLM routes to whichever provider/subscription it fronts.
+- Model ids become **gateway catalog ids** (`grok/grok-4.7`, `kimi_code/k3`, chain aliases like `lite`/`plus`/`ultra`). Do not invent ids — list them from the gateway.
+- Skills, hooks, subagents, MCP, and permission modes are unchanged; only the endpoint moves.
+
+## Gotchas
+
+- **No `/v1` suffix.** Claude Code appends the Anthropic path itself. Point at the gateway root.
+- **`ANTHROPIC_AUTH_TOKEN`, not `ANTHROPIC_API_KEY`** — the token var is the supported gateway-auth path; a set `ANTHROPIC_API_KEY` can take precedence and break routing.
+- **Model metadata warnings** for gateway ids (e.g. `grok/grok-4.7`) are cosmetic; the completion still routes.
+- Claude Code expects Anthropic-protocol models on the far side of the base URL. Route to Anthropic-protocol-capable models or the gateway's Anthropic-compat surface when in doubt.

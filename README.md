@@ -1,74 +1,146 @@
 # openllm-bots
 
-**Standardized multi-bot repository** for orchestrators that share one model fabric.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Bots](https://img.shields.io/badge/bots-10-green.svg)](#bots)
+[![Harnesses surveyed](https://img.shields.io/badge/harnesses%20surveyed-23-blue.svg)](./docs/harness-survey.md)
 
-Each orchestrator bot (Grok, Muse, Cursor, Hermes, …) lives in its own folder. They all use [OpenLLM](https://openllm.sh) as the model fabric. Grok and Cursor attach via `openllm mcp`; Muse uses an emulated workspace skill + Secure Vault (see [`bots/muse`](./bots/muse)).
+**Standardized multi-bot repository: any coding-agent harness as orchestrator, [OpenLLM](https://openllm.sh) as the shared model fabric.**
+
+Every orchestrator bot lives in its own folder under `bots/`. Each one keeps its own planning, tools, approvals, and file/git access — and routes all inference through one OpenLLM gateway, so your models, subscriptions, and accounting live in one place.
 
 | Role | Who | Does |
 | --- | --- | --- |
-| **Orchestrator** | The bot (Grok Bot / Muse / Cursor agent / Hermes / …) | Plans, tools, approvals, code, GitHub/Vercel/… |
-| **Model fabric** | OpenLLM via `openllm mcp` | Models, completions, account API, context, memory |
+| **Orchestrator** | The harness (Claude Code, Codex, OpenCode, Hermes, …) | Plans, tools, approvals, code, GitHub/Vercel/… |
+| **Model fabric** | OpenLLM gateway (`openllm mcp` or OpenAI/Anthropic-compat endpoints) | Models, completions, account API, context, memory |
 
 ```text
-Orchestrator  =  the bot
-Model fabric  =  OpenLLM gateway + MCP
+Orchestrator  =  the bot (its own tools and judgment)
+Model fabric  =  OpenLLM gateway + MCP (one endpoint for every model you use)
 ```
 
-Details and diagram: [shared/architecture.md](./shared/architecture.md). Connect (CLI, env, remote MCP rules): [shared/openllm-connect.md](./shared/openllm-connect.md).
+Details and diagram: [shared/architecture.md](./shared/architecture.md). Connect concepts (CLI, env, remote MCP rules): [shared/openllm-connect.md](./shared/openllm-connect.md).
 
 This layout replaces the flat plugin at [MindDragonLabs/grok-openllm-orchestrator](https://github.com/MindDragonLabs/grok-openllm-orchestrator). See [MIGRATION.md](./MIGRATION.md).
 
+## Contents
+
+- [Bots](#bots)
+- [Quick start](#quick-start)
+- [Which attach method?](#which-attach-method)
+- [Harness survey](#harness-survey)
+- [Adding a bot](#adding-a-bot)
+- [Scope](#in-scope--out-of-scope)
+- [Links](#links)
+
 ## Bots
 
-| id | host | status | path | description |
+| id | host | status | attach | path |
 | --- | --- | --- | --- | --- |
-| `grok` | grok-bot | ready | [`bots/grok`](./bots/grok) | Grok Bot orchestrates; OpenLLM via `openllm mcp` |
-| `cursor` | cursor | ready | [`bots/cursor`](./bots/cursor) | Cursor plugin; OpenLLM via `openllm mcp` |
-| `muse` | muse | ready | [`bots/muse`](./bots/muse) | Muse orchestrates OpenLLM via emulated skill + Secure Vault |
-| `hermes` | hermes | ready | [`bots/hermes`](./bots/hermes) | Hermes Agent orchestrates; OpenLLM via `hermes mcp add` (stdio `openllm mcp`) |
+| `claude` | Claude Code | ready · verified 2026-09-28 | Anthropic-compat base URL | [`bots/claude`](./bots/claude) |
+| `codex` | Codex CLI | ready · verified 2026-09-28 | Responses-API provider block | [`bots/codex`](./bots/codex) |
+| `opencode` | OpenCode | ready · verified 2026-09-28 | `@ai-sdk/openai-compatible` | [`bots/opencode`](./bots/opencode) |
+| `pi` | Pi | ready · verified 2026-09-28 | `models.json` custom provider | [`bots/pi`](./bots/pi) |
+| `mcode` | MiniMax Code | ready · verified 2026-09-28 | `anthropic-messages` custom provider | [`bots/mcode`](./bots/mcode) |
+| `zcode` | ZCode | ready · verified 2026-09-28 | `provider_config.json` rule | [`bots/zcode`](./bots/zcode) |
+| `grok` | Grok Bot | ready | `openllm mcp` (custom MCP in chat) | [`bots/grok`](./bots/grok) |
+| `cursor` | Cursor | ready | `openllm mcp` (plugin `mcp.json`) | [`bots/cursor`](./bots/cursor) |
+| `hermes` | Hermes Agent | ready | `openllm mcp` (`hermes mcp add`) | [`bots/hermes`](./bots/hermes) |
+| `muse` | Muse | ready | emulated skill + Secure Vault | [`bots/muse`](./bots/muse) |
 
-`status` is `ready`, `stub`, or `experimental` (see each `bot.manifest.json`).
+`status` is `ready`, `stub`, or `experimental` (see each `bot.manifest.json`). "Verified" means a real completion was routed through an OpenLLM gateway on the date shown — see [docs/harness-survey.md](./docs/harness-survey.md) for the full method.
 
-## Quick start — Grok Bot
+## Quick start
 
-Grok Bot is the orchestrator. A **template share cannot pack custom MCP** — each owner adds OpenLLM themselves.
+Pick your harness. Every path needs an [OpenLLM](https://openllm.sh) account and API key first.
 
-1. Review, then install the CLI:
+### Claude Code
 
-   ```sh
-   curl -fsSL "https://openllm.sh/install" | bash
-   openllm version
-   ```
+```sh
+export ANTHROPIC_BASE_URL="http://127.0.0.1:8787"    # gateway root, no /v1
+export ANTHROPIC_AUTH_TOKEN="$OPENLLM_API_KEY"
+unset ANTHROPIC_API_KEY
+claude -p --model claude-sonnet-4-6 "Reply with exactly: OPENLLM-OK"
+```
 
-2. In Grok Bot chat, add a custom MCP (do not paste the key into a skill file):
+Full setup: [bots/claude/docs/setup.md](./bots/claude/docs/setup.md)
 
-   ```text
-   Add a custom MCP server named openllm that runs: openllm mcp
-   Set environment:
-   - OPENLLM_API_KEY = (I will paste the key in the next message)
-   - OPENLLM_CLOUD_ORIGIN = https://openllm.sh
-   ```
+### Codex CLI
 
-3. Import skills from [`bots/grok/skills/`](./bots/grok/skills/).
+```toml
+# ~/.codex/config.toml
+model = "grok/grok-4.7"
+model_provider = "openllm"
+web_search = "disabled"
 
-Copy-paste and verification: [bots/grok/docs/setup.md](./bots/grok/docs/setup.md). Skill: [`grok-orchestrator`](./bots/grok/skills/grok-orchestrator/SKILL.md).
+[model_providers.openllm]
+name = "OpenLLM"
+base_url = "http://127.0.0.1:8787/v1"
+env_key = "OPENLLM_API_KEY"
+wire_api = "responses"
+```
 
-## Quick start — Cursor
+Full setup: [bots/codex/docs/setup.md](./bots/codex/docs/setup.md)
 
-Plugin id: `openllm-orchestrator-cursor` (listed in [`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json)).
+### OpenCode
 
-1. Install the CLI (same command as above).
-2. Install the plugin from Customize → Plugins / Marketplace when listed, **or** copy [`bots/cursor`](./bots/cursor) to `~/.cursor/plugins/local/openllm-orchestrator-cursor` (folder must live inside `~/.cursor/plugins/local`; Cursor skips symlinks that point elsewhere), **or** add this repository as a team marketplace source.
-3. Set **Plugins → Configure**: `OPENLLM_API_KEY` (required), `OPENLLM_CLOUD_ORIGIN` (optional, default `https://openllm.sh`).
-4. Confirm the `openllm` MCP server is running.
+```jsonc
+// opencode.json
+{
+  "provider": {
+    "openllm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenLLM",
+      "options": { "baseURL": "http://127.0.0.1:8787/v1" },
+      "models": { "grok/grok-4.7": { "name": "Grok 4.7 via OpenLLM" } }
+    }
+  }
+}
+```
 
-Full Cursor setup: [bots/cursor/README.md](./bots/cursor/README.md) and [bots/cursor/docs/setup.md](./bots/cursor/docs/setup.md). Commands: `/setup-openllm`, `/openllm-dev-task`.
+Run with `OPENCODE_API_KEY_openllm="$OPENLLM_API_KEY" opencode run --model 'openllm/grok/grok-4.7' "..."`.
 
-Submit/update a marketplace listing: [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish).
+Full setup: [bots/opencode/docs/setup.md](./bots/opencode/docs/setup.md)
 
-## Quick start — Hermes
+### Pi
 
-Hermes is the orchestrator. Attach OpenLLM as a stdio MCP server on the Hermes host (per profile; the key goes in the profile `.env`, not git):
+Add an `openllm` provider to `~/.pi/agent/models.json` (`api: "openai-completions"`, `apiKey: "env:OPENLLM_API_KEY"`), then `pi --model openllm/grok/grok-4.5 -p "..."`.
+
+Full setup: [bots/pi/docs/setup.md](./bots/pi/docs/setup.md)
+
+### MiniMax Code (mcode)
+
+```sh
+mcode provider add --name "OpenLLM" --base-url "http://127.0.0.1:8787" \
+  --api-format anthropic-messages --model "grok/grok-4.7" --api-key-env OPENLLM_API_KEY
+mcode exec --model "custom_provider:openllm/grok/grok-4.7" --permission off "..."
+```
+
+Full setup: [bots/mcode/docs/setup.md](./bots/mcode/docs/setup.md)
+
+### ZCode
+
+Edit `~/.zcode/v2/provider_config.json` — provider rule + manual model rules + `defaultModelSelection` (all three required). Full setup: [bots/zcode/docs/setup.md](./bots/zcode/docs/setup.md)
+
+### Grok Bot
+
+A template share cannot pack custom MCP — each owner adds OpenLLM in chat:
+
+```text
+Add a custom MCP server named openllm that runs: openllm mcp
+Set environment:
+- OPENLLM_API_KEY = (paste the key in the next message)
+- OPENLLM_CLOUD_ORIGIN = https://openllm.sh
+```
+
+Full setup: [bots/grok/docs/setup.md](./bots/grok/docs/setup.md)
+
+### Cursor
+
+Plugin id `openllm-orchestrator-cursor` ([`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json)). Install the plugin, set **Plugins → Configure**: `OPENLLM_API_KEY` (required), `OPENLLM_CLOUD_ORIGIN` (optional). Commands: `/setup-openllm`, `/openllm-dev-task`.
+
+Full setup: [bots/cursor/README.md](./bots/cursor/README.md) · [bots/cursor/docs/setup.md](./bots/cursor/docs/setup.md)
+
+### Hermes
 
 ```sh
 hermes mcp add openllm --command openllm --connect-timeout 30 \
@@ -77,36 +149,47 @@ hermes mcp add openllm --command openllm --connect-timeout 30 \
 hermes mcp test openllm
 ```
 
-Then import skills from [`bots/hermes/skills/`](./bots/hermes/skills/).
+Full setup: [bots/hermes/docs/setup.md](./bots/hermes/docs/setup.md)
 
-Full setup with pitfalls: [bots/hermes/docs/setup.md](./bots/hermes/docs/setup.md).
+### Muse
 
-## Quick start — Muse
+Muse attaches via an emulated workspace skill + Secure Vault key — not `openllm mcp`. Read [`bots/muse`](./bots/muse) in order (`docs/01-overview.md` … `docs/09-troubleshooting.md`).
 
-Muse is the orchestrator. OpenLLM ([openllm.sh](https://openllm.sh)) is the model fabric, attached via an **emulated workspace skill** and a Secure Vault key — not `openllm mcp`.
+## Which attach method?
 
-Read [`bots/muse`](./bots/muse) in order (`docs/01-overview.md` … `docs/09-troubleshooting.md`). Templates: [`bots/muse/templates`](./bots/muse/templates). Sample flows: [`bots/muse/examples/sample-flows.md`](./bots/muse/examples/sample-flows.md).
+| Your harness speaks… | Attach method | Endpoint shape | Used by |
+| --- | --- | --- | --- |
+| Anthropic Messages protocol | Anthropic-compat base URL / provider | gateway **root** (no `/v1`) | Claude Code, mcode |
+| OpenAI chat completions | OpenAI-compat base URL / provider | gateway `/v1` | OpenCode, Pi, Aider, Crush, Goose, zcode |
+| OpenAI Responses API | Responses provider block | gateway `/v1` | Codex |
+| MCP (stdio) | `openllm mcp` | spawned by the host | Hermes, Cursor, Grok Bot |
+| No native provider config | emulated skill + vault | CLI calls gateway | Muse |
+
+Rules of thumb:
+
+- **Never commit keys.** Env vars or the host's secret store, always.
+- **Discover model ids live** (`curl <gateway>/v1/models`) — do not invent them.
+- **Direct model ids beat chain aliases** for reliability (`grok/grok-4.7` over `ultra`).
 
 ## Harness survey
 
-`docs/harness-survey.md` tracks which coding-agent CLIs attach to OpenLLM and how — OpenAI-compatible base URL, Anthropic-compatible base URL, or MCP. Verified live on macOS against a local OpenLLM gateway:
+[docs/harness-survey.md](./docs/harness-survey.md) tracks 23 harnesses and how each attaches to OpenLLM — verified live, blocked with reasons, or pending. Highlights:
 
-- **Attach methods that work:** Claude Code (Anthropic-compat base URL), Goose, Aider, Crush, Pi (OpenAI-compat base URL / custom provider), Hermes and Cursor (MCP).
-- **Blocked, with reasons:** Codex (ChatGPT-account auth overrides base URL), Gemini CLI (Google-protocol only). Qwen reaches the gateway but its tool schema is rejected (422).
-- Also covered: mcode (MiniMax Code), CommandCode, Grok CLI, Devin CLI, Kimi CLI, mmx, claude-squad.
+- **Live:** Claude Code, Codex, OpenCode, Pi, mcode, zcode, Goose, Aider, Crush, plus Hermes/Cursor/Grok Bot via MCP.
+- **Blocked/gated:** Gemini CLI (Google-protocol only). Qwen Code reaches the gateway but its tool schema is rejected (422).
+- **Pending/untested:** Cursor CLI, Devin, Grok CLI, Kimi CLI, Amp, Plandex, Warp, Amazon Q, Copilot CLI.
 
 ## Adding a bot
 
-Create `bots/<name>/` with `README.md` + `bot.manifest.json`, link to `shared/`, and (if it is a Cursor plugin) register it in `.cursor-plugin/marketplace.json`. Step-by-step: [CONTRIBUTING.md](./CONTRIBUTING.md).
+Create `bots/<name>/` with `README.md` + `bot.manifest.json`, link to `shared/`, and (for Cursor plugins) register in `.cursor-plugin/marketplace.json`. Step-by-step: [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## In scope / out of scope
 
 **In scope**
 
 - Teaching the orchestrator vs model-fabric split
-- Connecting official `openllm mcp` (Grok, Cursor)
-- Muse emulated workspace skill + Secure Vault against openllm.sh
-- Per-host skills and setup docs
+- Attaching harnesses to OpenLLM (MCP, base URLs, provider configs)
+- Per-harness setup docs and pitfalls, verified against real gateways
 - Dashboard-like account work and development tasks through the gateway
 
 **Out of scope**

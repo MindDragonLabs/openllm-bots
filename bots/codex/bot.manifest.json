@@ -1,0 +1,22 @@
+{
+  "id": "codex",
+  "displayName": "Codex CLI",
+  "host": "codex",
+  "status": "ready",
+  "description": "Codex CLI as orchestrator; OpenLLM as model fabric via a model_providers block (Responses wire API) in config.toml.",
+  "openllm": {
+    "attach": "openai-responses-provider",
+    "config": "~/.codex/config.toml [model_providers.openllm]",
+    "env": ["OPENLLM_API_KEY"],
+    "note": "wire_api must be responses (chat is removed in codex 0.153+); set web_search = disabled to avoid daemon-side rejection."
+  },
+  "paths": {
+    "docs": "docs"
+  },
+  "verified": {
+    "date": "2026-09-28",
+    "host": "macmini (macOS 26, arm64)",
+    "versions": { "codex": "0.157.0" },
+    "result": "live — codex exec completed through the local OpenLLM gateway (127.0.0.1:8787/v1)"
+  }
+}

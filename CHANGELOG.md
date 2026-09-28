@@ -9,15 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Six new ready bots, all verified live 2026-09-28 against a local OpenLLM gateway (macmini, macOS arm64):
+  - **Claude Code** (`bots/claude`) — `ANTHROPIC_BASE_URL`/`ANTHROPIC_AUTH_TOKEN` attach, claude 2.1.282.
+  - **Codex CLI** (`bots/codex`) — `model_providers` block with Responses wire API, codex 0.157.0. Previous "BLOCKED" verdict superseded.
+  - **OpenCode** (`bots/opencode`) — `@ai-sdk/openai-compatible` provider in `opencode.json`, opencode 1.15.7.
+  - **Pi** (`bots/pi`) — custom provider in `~/.pi/agent/models.json`, pi 0.73.1.
+  - **MiniMax Code** (`bots/mcode`) — `mcode provider add --api-format anthropic-messages`, mcode 0.4.12.
+  - **ZCode** (`bots/zcode`) — `~/.zcode/v2/provider_config.json` provider rule + manual model rules + default selection, zcode-app-cli 3.14.3-28.
+- Each bot folder ships `README.md`, `bot.manifest.json`, and `docs/setup.md` with copy-paste attach steps and a troubleshooting table.
+
+### Changed
+
+- Harness survey expanded from 18 to 23 harnesses; codex verdict updated BLOCKED → LIVE (Responses wire API + `web_search = "disabled"`), opencode pending → LIVE, zcode added as LIVE. [docs/harness-survey.md](./docs/harness-survey.md).
+- README rebuilt: badge row, table of contents, 10-bot table with attach methods and verification dates, per-harness quick starts, "Which attach method?" matrix. [README.md](./README.md).
+- CONTRIBUTING host enum extended: `claude-code | codex | opencode | pi | mcode | zcode` join the list.
+
+### Kept from earlier Unreleased entries
+
 - README: Harness survey section linking docs/harness-survey.md (live attach methods, blocked harnesses with reasons).
 
 - Harness investigation program: audit of 20 coding-agent CLIs (Claude Code, Codex CLI, Devin CLI, CommandCode, MiniMax CLI, OpenCode, Cursor CLI, Grok CLI, Pi CLI, and more) for OpenLLM model-fabric attachment. Results land under `bots/` as each harness is verified.
 
-### Changed
-
 - All OpenLLM CLI links now point at the prerelease branch: `https://github.com/openllmsh/cli/tree/prerelease` (8 files).
-
-### Fixed
 
 - Devin follow-ups — Muse CLI auth/usage/latency/URL checks; fix OpenLLM install URL; Hermes CLI version check.
 

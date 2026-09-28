@@ -1,0 +1,21 @@
+{
+  "id": "claude",
+  "displayName": "Claude Code",
+  "host": "claude-code",
+  "status": "ready",
+  "description": "Claude Code as orchestrator; OpenLLM as model fabric via ANTHROPIC_BASE_URL + ANTHROPIC_AUTH_TOKEN (Anthropic-compatible gateway endpoint).",
+  "openllm": {
+    "attach": "anthropic-base-url",
+    "env": ["ANTHROPIC_BASE_URL", "ANTHROPIC_AUTH_TOKEN"],
+    "note": "Point ANTHROPIC_BASE_URL at the OpenLLM gateway root (no /v1 suffix); token is the OpenLLM API key."
+  },
+  "paths": {
+    "docs": "docs"
+  },
+  "verified": {
+    "date": "2026-09-28",
+    "host": "macmini (macOS 26, arm64)",
+    "versions": { "claude": "2.1.282" },
+    "result": "live — headless completion routed through the local OpenLLM gateway (127.0.0.1:8787)"
+  }
+}

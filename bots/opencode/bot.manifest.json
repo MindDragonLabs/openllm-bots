@@ -1,0 +1,22 @@
+{
+  "id": "opencode",
+  "displayName": "OpenCode",
+  "host": "opencode",
+  "status": "ready",
+  "description": "OpenCode as orchestrator; OpenLLM as model fabric via an @ai-sdk/openai-compatible provider block in opencode.json.",
+  "openllm": {
+    "attach": "opencode-json-provider",
+    "config": "opencode.json (project) or ~/.config/opencode/opencode.json (global)",
+    "env": ["OPENCODE_API_KEY_openllm"],
+    "note": "Provider block with npm @ai-sdk/openai-compatible, baseURL at the gateway /v1 root, key via OPENCODE_API_KEY_openllm env (keeps the secret out of the file). Pass --model openllm/<model-id> explicitly on first run."
+  },
+  "paths": {
+    "docs": "docs"
+  },
+  "verified": {
+    "date": "2026-09-28",
+    "host": "macmini (macOS 26, arm64)",
+    "versions": { "opencode": "1.15.7" },
+    "result": "live — opencode run --model openllm/grok/grok-4.7 completed through the local OpenLLM gateway"
+  }
+}
