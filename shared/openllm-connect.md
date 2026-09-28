@@ -12,7 +12,7 @@ The base-URL attach paths (Claude Code, Codex, OpenCode, Pi, mcode, zcode, Goose
 
 | Endpoint | URL | Notes |
 | --- | --- | --- |
-| Local daemon | `http://127.0.0.1:8787` | Installed with the OpenLLM CLI. OpenAI-compatible `/v1` (chat completions, models, responses) and an Anthropic-compatible root for Anthropic-wire harnesses. Runs on the machine you work from. |
+| Local daemon | `http://127.0.0.1:8787` | Installed with the OpenLLM CLI. Start it with `~/.openllm/bin/openllm serve` (or your platform's service unit if you installed one) and confirm with `curl -s http://127.0.0.1:8787/v1/models -H "Authorization: Bearer $OPENLLM_API_KEY" | head -c 200`. OpenAI-compatible `/v1` (chat completions, models, responses) plus an Anthropic-compatible root for Anthropic-wire harnesses. Runs on the machine you work from. |
 | Hosted origin | `https://openllm.sh` (`OPENLLM_CLOUD_ORIGIN`) | The cloud origin. Subscription traffic OpenLLM documents as local-daemon-only stays on the local daemon — do not point subscription-backed traffic at the hosted origin. |
 
 Which URL goes where:
