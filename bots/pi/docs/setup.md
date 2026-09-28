@@ -38,8 +38,6 @@ Edit `~/.pi/agent/models.json`. If it exists, merge the `openllm` block into `pr
       "models": [
         { "id": "grok/grok-4.7", "name": "Grok 4.7 via OpenLLM", "contextWindow": 200000 },
         { "id": "grok/grok-4.5", "name": "Grok 4.5 via OpenLLM", "contextWindow": 200000 },
-        { "id": "grok/grok-4.6", "name": "Grok 4.6 via OpenLLM", "contextWindow": 200000 },
-        { "id": "kimi_code/kimi-for-coding-highspeed", "name": "Kimi for Coding highspeed via OpenLLM", "contextWindow": 256000 },
         { "id": "kimi_code/k3", "name": "Kimi K3 via OpenLLM", "contextWindow": 256000 }
       ]
     }
@@ -89,3 +87,7 @@ Mirror the ids you want into the provider's `models` array. Do not guess ids.
 | `unknown provider` on `--model` | provider name typo | `--model openllm/<id>` — the key in `providers` is the prefix |
 | Model listed but calls fail | id not actually in gateway catalog | Verify with `/v1/models`; remove dead entries |
 | Context meter wildly wrong | wrong `contextWindow` value | Set the real gateway context size per model |
+
+## Loopback caveat
+
+"Verified live" ran on a loopback gateway that does not enforce request authentication — it proves routing, not key transport. See the [survey method note](../../../docs/harness-survey.md).

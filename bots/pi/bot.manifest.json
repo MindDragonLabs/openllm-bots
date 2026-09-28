@@ -21,6 +21,6 @@
     "versions": {
       "pi": "0.73.1"
     },
-    "result": "live — pi --model openllm/grok/grok-4.7 -p completed through the local OpenLLM gateway (also verified on grok-4.5)"
+    "result": "live \u2014 pi --model openllm/grok/grok-4.7 -p completed through the local OpenLLM gateway (grok/grok-4.5 also verified)"
   }
 }

@@ -78,3 +78,7 @@ Interactive Claude Code also fires background requests to a small fast model (ha
 | 404 on requests | base URL has `/v1` (or another path) appended | Use the bare gateway root |
 | `unknown model` hard error | id not in gateway catalog | Pick an id from `/v1/models` |
 | Slow first response | gateway cold-start / provider routing | Retry; check gateway logs |
+
+## Loopback caveat
+
+"Verified live" ran on a loopback gateway that does not enforce request authentication — it proves routing, not key transport. See the [survey method note](../../../docs/harness-survey.md).
