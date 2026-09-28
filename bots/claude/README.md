@@ -30,10 +30,10 @@ unset ANTHROPIC_API_KEY                                  # avoid conflicting aut
 Verify headless:
 
 ```sh
-claude -p --model claude-sonnet-4-6 "Reply with exactly: OPENLLM-OK"
+claude -p --model <gateway-model-id> "Reply with exactly: OPENLLM-OK"
 ```
 
-A benign warning about claude.ai connectors may appear when `ANTHROPIC_API_KEY` is set; unset it (as above) and the gateway auth token takes over.
+A warning about claude.ai connectors appears when `ANTHROPIC_API_KEY` is set — that is the signal it is overriding your gateway auth. Unset it (as above); `ANTHROPIC_AUTH_TOKEN` then carries the gateway key. Pick `<gateway-model-id>` from the gateway's `/v1/models` list, not from memory.
 
 Copy-paste steps, model ids, and pitfalls: [docs/setup.md](./docs/setup.md).
 

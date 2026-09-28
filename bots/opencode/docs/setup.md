@@ -17,10 +17,10 @@ Verified: opencode **1.15.7**, macOS arm64, local OpenLLM gateway `http://127.0.
 ## 1. Environment
 
 ```sh
-export OPENCODE_API_KEY_openllm="$OPENLLM_API_KEY"
+export OPENLLM_API_KEY="sk-llm-..."
 ```
 
-`OPENCODE_API_KEY_<provider-id-lowercase>` is the env pattern opencode resolves for a custom provider's key. This keeps the secret out of `opencode.json`.
+The config references it as `{env:OPENLLM_API_KEY}` — the value resolves at launch and never enters the file.
 
 ## 2. Register the provider
 
@@ -33,7 +33,8 @@ Create or edit `opencode.json` in the project root (or `~/.config/opencode/openc
       "npm": "@ai-sdk/openai-compatible",
       "name": "OpenLLM",
       "options": {
-        "baseURL": "http://127.0.0.1:8787/v1"
+        "baseURL": "http://127.0.0.1:8787/v1",
+        "apiKey": "{env:OPENLLM_API_KEY}"
       },
       "models": {
         "grok/grok-4.7": { "name": "Grok 4.7 via OpenLLM" },
@@ -51,7 +52,7 @@ Field notes:
 | `npm` | `@ai-sdk/openai-compatible` | The AI SDK package for any OpenAI-compatible endpoint |
 | `options.baseURL` | gateway `/v1` | Chat-completions endpoint root |
 | `models` keys | gateway catalog ids | Slash ids are valid JSON keys; reference as `openllm/<id>` |
-| no `apiKey` in options | — | Key comes from `OPENCODE_API_KEY_openllm` |
+| `apiKey: "{env:OPENLLM_API_KEY}"` | — | Documented reference form; resolves the exported `OPENLLM_API_KEY` at launch |
 
 ## 3. Verify headless
 
@@ -86,7 +87,7 @@ Mirror the ids you want into the provider's `models` object.
 | Symptom | Cause | Fix |
 | --- | --- | --- |
 | `Insufficient account funds` | default model used, not the OpenLLM provider | Pass `--model openllm/<id>` or set `"model"` in config |
-| 401 from gateway | env var not set/misspelled | `export OPENCODE_API_KEY_openllm="$OPENLLM_API_KEY"` (lowercase provider id) |
+| 401 from gateway | `OPENLLM_API_KEY` not exported, or `apiKey` reference misspelled | `export OPENLLM_API_KEY=...`; confirm `options.apiKey` is exactly `"{env:OPENLLM_API_KEY}"` |
 | Provider not listed in TUI | config file location/syntax | Validate JSON; project `opencode.json` overrides global |
 | 404 on requests | `baseURL` missing `/v1` | Use `http://<host>:8787/v1` |
 | Model listed but calls fail | id not in gateway catalog | Verify with `/v1/models`; remove dead entries |

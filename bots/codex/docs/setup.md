@@ -22,7 +22,7 @@ export OPENLLM_API_KEY="sk-llm-..."
 
 ## 2. Add the provider block
 
-Append to `~/.codex/config.toml`:
+Edit `~/.codex/config.toml` — put the four top-level keys **before any `[table]`** section (TOML assigns top-level keys to the last open table), replacing any existing `model`/`model_provider` lines:
 
 ```toml
 model = "grok/grok-4.7"

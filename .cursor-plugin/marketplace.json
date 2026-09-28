@@ -4,7 +4,7 @@
     "name": "MindDragonLabs"
   },
   "metadata": {
-    "description": "Standardized OpenLLM orchestrator bots — one folder per bot (Grok, Cursor, Muse, Hermes, …) sharing the OpenLLM model fabric.",
+    "description": "Standardized OpenLLM orchestrator bots \u2014 one folder per harness (Claude Code, Codex, OpenCode, Pi, MiniMax Code, ZCode, Grok Bot, Cursor, Muse, Hermes, \u2026) sharing the OpenLLM model fabric.",
     "version": "0.1.0"
   },
   "plugins": [

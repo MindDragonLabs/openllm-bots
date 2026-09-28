@@ -35,7 +35,7 @@ Edit `~/.zcode/v2/provider_config.json` — provider rule + manual model rules +
             "group": "standard-personal",
             "access": {
               "type": "api-key",
-              "apiKey": "sk-...",            // your OpenLLM API key
+              "apiKey": "sk-llm-REPLACE_ME",            // your OpenLLM API key
               "apiKeyManagementUrl": "https://openllm.sh"
             },
             "api": {
@@ -55,6 +55,23 @@ Edit `~/.zcode/v2/provider_config.json` — provider rule + manual model rules +
       "manualProviderModelRules": [
         {
           "providerId": "openllm",
+          "modelId": "kimi_code/k3",
+          "config": {
+            "properties": {
+              "contextWindow": 256000,
+              "inputFormat": { "supportsImage": false, "supportsVideo": false, "supportsPdf": false },
+              "supportsJsonSchemaOutput": false,
+              "supportsNativeWebSearch": false,
+              "supportsMidConversationSystem": false
+            },
+            "optionSpecs": {
+              "maxOutputTokens": { "max": 32000 },
+              "reasoningLevel": { "values": ["low", "medium", "high"], "map": "{}" }  // map is a mapping-expression STRING per zcode schema
+            }
+          }
+        },
+        {
+          "providerId": "openllm",
           "modelId": "grok/grok-4.7",
           "config": {
             "properties": {
@@ -66,7 +83,7 @@ Edit `~/.zcode/v2/provider_config.json` — provider rule + manual model rules +
             },
             "optionSpecs": {
               "maxOutputTokens": { "max": 32000 },
-              "reasoningLevel": { "values": ["low", "medium", "high"], "map": "{}" }
+              "reasoningLevel": { "values": ["low", "medium", "high"], "map": "{}" }  // map is a mapping-expression STRING per zcode schema
             }
           }
         }

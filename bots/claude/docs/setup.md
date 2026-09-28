@@ -37,10 +37,10 @@ unset ANTHROPIC_API_KEY
 ## 3. Verify headless
 
 ```sh
-claude -p --model claude-sonnet-4-6 "Reply with exactly: OPENLLM-OK"
+claude -p --model <gateway-model-id> "Reply with exactly: OPENLLM-OK"
 ```
 
-Expected: `OPENLLM-OK`. On success every subsequent `claude` session in this shell routes through OpenLLM.
+Replace `<gateway-model-id>` with an id your gateway actually lists (step 4) — do not invent one. Expected: `OPENLLM-OK`. On success every subsequent `claude` session in this shell routes through OpenLLM.
 
 ## 4. Model ids
 
@@ -55,7 +55,7 @@ Gateway catalog ids look like `grok/grok-4.7`, `kimi_code/k3`, plus chain aliase
 
 ## 5. Persist per-project (optional)
 
-For a repo-scoped setup, put the exports in the project's `.env` or a wrapper script (`./scripts/claude-openllm.sh`) instead of your global profile, so first-party Anthropic auth stays available elsewhere:
+For a repo-scoped setup, use a wrapper script (not a `.env` file — Claude Code does not source one, `unset` cannot be expressed there, and `.env` files are often committed):
 
 ```sh
 #!/bin/sh

@@ -19,7 +19,7 @@ Shared docs: [architecture](../../shared/architecture.md) · [connect rules](../
 
 ## Attach (summary)
 
-Add to `~/.codex/config.toml`:
+Edit `~/.codex/config.toml` — put the four top-level keys **before any `[table]`** section (TOML assigns top-level keys to the last open table), replacing any existing `model`/`model_provider` lines:
 
 ```toml
 model = "grok/grok-4.7"
@@ -48,5 +48,5 @@ Full steps, per-project config, and pitfalls: [docs/setup.md](./docs/setup.md).
 - **`wire_api = "chat"` no longer loads** (codex 0.153+ removed it). Use `"responses"`.
 - **Set `web_search = "disabled"`.** Codex's default `live` web search sends a cache-only web-search policy the OpenLLM daemon rejects (`unsupported_web_search_policy`). Disabling it removes the error; the model itself still works.
 - **Fallback model metadata warning** for gateway catalog ids is cosmetic.
-- **Signed-in ChatGPT sessions coexist.** The provider block selects OpenLLM per-invocation without touching your ChatGPT login; use a separate `CODEX_HOME` (as in [docs/setup.md](./docs/setup.md)) for a fully isolated setup.
+- **Signed-in ChatGPT sessions coexist.** With `model_provider = "openllm"` at the top level, OpenLLM becomes the **default for every invocation** from that config; your ChatGPT login is untouched but unused. For per-invocation control use `-c model_provider=...` overrides, or a separate `CODEX_HOME` (as in [docs/setup.md](./docs/setup.md)) for a fully isolated setup.
 - `env_key` beats hardcoding `api_key` — the key stays out of the file.

@@ -45,7 +45,7 @@ Verify headless:
 
 ```sh
 export OPENLLM_API_KEY=...
-pi --model openllm/grok/grok-4.5 -p "Reply with exactly: OPENLLM-OK"
+pi --model openllm/grok/grok-4.7 -p "Reply with exactly: OPENLLM-OK"
 ```
 
 Full steps and pitfalls: [docs/setup.md](./docs/setup.md).
