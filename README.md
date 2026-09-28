@@ -6,7 +6,7 @@
 
 **Standardized multi-bot repository: any coding-agent harness as orchestrator, [OpenLLM](https://openllm.sh) as the shared model fabric.**
 
-Every orchestrator bot lives in its own folder under `bots/`. Each one keeps its own planning, tools, approvals, and file/git access — and routes all inference through one OpenLLM gateway, so your models, subscriptions, and accounting live in one place.
+Every orchestrator bot lives in its own folder under `bots/`. Each one keeps its own planning, tools, approvals, and file/git access. Base-URL bots route their inference through one OpenLLM gateway; MCP bots call it for catalog, completions hops, search, and memory — so your models, subscriptions, and accounting live in one place either way.
 
 | Role | Who | Does |
 | --- | --- | --- |
@@ -31,6 +31,7 @@ This layout replaces the flat plugin at [MindDragonLabs/grok-openllm-orchestrato
 - [Adding a bot](#adding-a-bot)
 - [Scope](#in-scope--out-of-scope)
 - [Links](#links)
+- [License](#license)
 
 ## Bots
 
@@ -47,7 +48,7 @@ This layout replaces the flat plugin at [MindDragonLabs/grok-openllm-orchestrato
 | `hermes` | Hermes Agent | ready | `openllm mcp` (`hermes mcp add`) | [`bots/hermes`](./bots/hermes) |
 | `muse` | Muse | ready | emulated skill + Secure Vault | [`bots/muse`](./bots/muse) |
 
-`status` is `ready`, `stub`, or `experimental` (see each `bot.manifest.json`). "Verified" means a real completion was routed through an OpenLLM gateway on the date shown — see [docs/harness-survey.md](./docs/harness-survey.md) for the full method.
+`status` is `ready`, `stub`, or `experimental` (see each `bot.manifest.json`). "Verified" means a real completion was routed through an OpenLLM gateway on the date shown. Verification ran on a loopback gateway that does not enforce request auth — it proves routing, not key transport; see [docs/harness-survey.md](./docs/harness-survey.md) for the method note.
 
 ## Quick start
 
@@ -97,13 +98,13 @@ Full setup: [bots/codex/docs/setup.md](./bots/codex/docs/setup.md)
 }
 ```
 
-Run with `OPENLLM_API_KEY` exported; the `{env:OPENLLM_API_KEY}` reference resolves it at launch: `opencode run --model 'openllm/grok/grok-4.7' "..."`.
+Key: `options.apiKey` is `"{env:OPENLLM_API_KEY}"` — the reference resolves the exported variable at launch. Then: `opencode run --model 'openllm/grok/grok-4.7' "..."`.
 
 Full setup: [bots/opencode/docs/setup.md](./bots/opencode/docs/setup.md)
 
 ### Pi
 
-Add an `openllm` provider to `~/.pi/agent/models.json` (`api: "openai-completions"`, `apiKey: "env:OPENLLM_API_KEY"`), then `pi --model openllm/grok/grok-4.7 -p "..."` (verified live on 4.7; any id in your provider block works).
+Add an `openllm` provider to `~/.pi/agent/models.json` (`api: "openai-completions"`, `apiKey: "OPENLLM_API_KEY"` (bare variable name)), then `pi --model openllm/grok/grok-4.7 -p "..."` (verified live on 4.7; any id in your provider block works).
 
 Full setup: [bots/pi/docs/setup.md](./bots/pi/docs/setup.md)
 
@@ -196,7 +197,7 @@ Rules of thumb:
 
 **Pending / untested (9):** Cursor CLI, Devin CLI, Grok CLI, Kimi CLI, Amp, Plandex, Warp, Amazon Q Developer CLI, GitHub Copilot CLI.
 
-The counts reconcile row-by-row against the survey table (12 + 2 + 9 = 23). Adjacent tools that are not OpenLLM client harnesses (mmx, CommandCode, Claude Squad) are tracked separately in the survey. Plus Muse ([`bots/muse`](./bots/muse)), which attaches via an emulated skill + Secure Vault rather than a gateway endpoint.
+The counts reconcile row-by-row against the survey table (12 + 2 + 9 = 23). Adjacent tools that are not OpenLLM client harnesses (mmx, CommandCode, Claude Squad) are tracked separately in the survey, alongside Muse ([`bots/muse`](./bots/muse)), which attaches via an emulated skill + Secure Vault rather than a gateway endpoint.
 
 ## Adding a bot
 

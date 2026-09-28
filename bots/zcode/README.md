@@ -2,7 +2,7 @@
 
 **Orchestrator:** ZCode (`zcode`, npm package `zcode-app-cli`)
 **Model fabric:** [OpenLLM](https://openllm.sh) via a personal provider rule in `~/.zcode/v2/provider_config.json`
-**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 against zcode-app-cli 3.14.3-28 / runtime 0.16.9
+**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 (loopback gateway; see caveat) against zcode-app-cli 3.14.3-28 / runtime 0.16.9
 
 ZCode keeps planning, permission modes, skills, and plugins. OpenLLM becomes the model fabric through the shared v2 provider registry — the same file ZCode Desktop reads.
 
@@ -104,6 +104,10 @@ zcode --prompt "Reply with exactly: OPENLLM-OK"
 A `ZCode Built-in missing` notice can appear for a personal-only provider setup; the completion still routes through the gateway.
 
 Full steps and pitfalls: [docs/setup.md](./docs/setup.md).
+
+## Loopback caveat
+
+"Verified live" means a real completion routed through an OpenLLM gateway on the date shown. The survey gateway runs on loopback, where the daemon does not enforce request authentication — the runs prove routing and request shape, not key transport. See [the survey method note](../../docs/harness-survey.md).
 
 ## Gotchas
 

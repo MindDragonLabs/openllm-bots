@@ -27,8 +27,8 @@ OpenLLM  →  model fabric (gateway + MCP: models, completions, search, memory)
 | Need | Use |
 | --- | --- |
 | Shell, files, git, gh, web fetch | Hermes-native tools — not OpenLLM |
-| Model catalog / inference hop | `mcp_openllm_api_v1Models_list` → `mcp_openllm_api_v1ChatCompletions_chatCompletions` (or `/v1/messages`, `/v1/responses`) |
-| Concept-level code or docs lookup | `mcp_openllm_search_code` / `mcp_openllm_search_docs` (index first with `index_codebase` / `index_docs`) |
+| Model catalog / inference hop | Live MCP tools — 2.6.36 landmarks: `mcp_openllm_api_v1Models_list`, `mcp_openllm_api_v1ChatCompletions_chatCompletions` (also `/v1/messages`, `/v1/responses`). **Discover names live; do not hard-code.** |
+| Concept-level code or docs lookup | Live search tools — landmarks: `mcp_openllm_search_code` / `mcp_openllm_search_docs` (index first). Discover live. |
 | Cross-session memory | `mcp_openllm_memory` / `mcp_openllm_recall` — do not store secrets there |
 | Account/usage questions | **openllm-dashboard** skill |
 

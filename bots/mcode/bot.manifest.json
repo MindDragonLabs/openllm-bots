@@ -6,13 +6,8 @@
   "description": "MiniMax Code as orchestrator; OpenLLM as model fabric via a custom provider with anthropic-messages API format.",
   "openllm": {
     "attach": "custom-provider",
-    "command": "mcode provider add",
-    "args": [
-      "--api-format",
-      "anthropic-messages",
-      "--base-url",
-      "<gateway-root>",
-      "--api-key-env",
+    "config": "mcode provider add (subcommand of the mcode CLI)",
+    "env": [
       "OPENLLM_API_KEY"
     ],
     "note": "anthropic-messages works against the gateway root (no /v1); openai-completions against /v1 is rejected by the gateway (400 schema)."
@@ -26,6 +21,6 @@
     "versions": {
       "mcode": "0.4.12"
     },
-    "result": "live \u2014 mcode exec completed through the local OpenLLM gateway"
+    "result": "live — mcode exec completed through the local OpenLLM gateway"
   }
 }

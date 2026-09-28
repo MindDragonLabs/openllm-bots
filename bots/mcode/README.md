@@ -2,7 +2,7 @@
 
 **Orchestrator:** MiniMax Code (`mcode`)
 **Model fabric:** [OpenLLM](https://openllm.sh) via custom provider (Anthropic-messages format)
-**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 against mcode 0.4.12
+**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 (loopback gateway; see caveat) against mcode 0.4.12
 
 MiniMax Code keeps planning, permissions, sessions, and plugins. OpenLLM becomes the model fabric through `mcode provider add` with the `anthropic-messages` API format.
 
@@ -42,6 +42,10 @@ mcode exec \
 ```
 
 Full steps and pitfalls: [docs/setup.md](./docs/setup.md).
+
+## Loopback caveat
+
+"Verified live" means a real completion routed through an OpenLLM gateway on the date shown. The survey gateway runs on loopback, where the daemon does not enforce request authentication — the runs prove routing and request shape, not key transport. See [the survey method note](../../docs/harness-survey.md).
 
 ## Gotchas
 

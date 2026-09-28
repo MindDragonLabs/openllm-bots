@@ -42,4 +42,4 @@ Full copy-paste blocks, npm launcher, and dashboard-only remote URL: [docs/setup
 
 ## Sibling bots
 
-Cursor plugin: [`../cursor`](../cursor). Muse: [`../muse`](../muse) (emulated skill + Secure Vault). Hermes: stub ([`../hermes`](../hermes)).
+Cursor plugin: [`../cursor`](../cursor). Muse: [`../muse`](../muse) (emulated skill + Secure Vault). Hermes: [`../hermes`](../hermes).

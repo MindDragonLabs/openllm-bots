@@ -2,7 +2,7 @@
 
 **Orchestrator:** Codex CLI (`codex`)
 **Model fabric:** [OpenLLM](https://openllm.sh) via a `model_providers` block (Responses wire API)
-**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 against codex-cli 0.157.0
+**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 (loopback gateway; see caveat) against codex-cli 0.157.0
 
 Codex keeps planning, sandboxing, approvals, and tools. OpenLLM becomes the model fabric through a custom `model_providers.openllm` block in `config.toml`. An earlier survey verdict ("ChatGPT-account auth overrides the base URL — BLOCKED") is **outdated**: with a dedicated provider block and the Responses wire API, codex routes through OpenLLM.
 
@@ -42,6 +42,10 @@ codex exec --skip-git-repo-check "Reply with exactly: OPENLLM-OK"
 ```
 
 Full steps, per-project config, and pitfalls: [docs/setup.md](./docs/setup.md).
+
+## Loopback caveat
+
+"Verified live" means a real completion routed through an OpenLLM gateway on the date shown. The survey gateway runs on loopback, where the daemon does not enforce request authentication — the runs prove routing and request shape, not key transport. See [the survey method note](../../docs/harness-survey.md).
 
 ## Gotchas
 

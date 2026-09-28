@@ -10,7 +10,7 @@
     "env": [
       "OPENLLM_API_KEY"
     ],
-    "note": "Provider entry with baseUrl at the gateway /v1 root, api openai-completions, apiKey env:OPENLLM_API_KEY. Set compat flags for gateways that reject developer role or reasoning-effort fields."
+    "note": "Provider entry with baseUrl at the gateway /v1 root, api openai-completions, apiKey as the BARE environment variable name (pi resolves the whole string via process.env[value] || literal - no env: prefix). Set compat flags for gateways that reject developer role or reasoning-effort fields."
   },
   "paths": {
     "docs": "docs"
@@ -21,6 +21,6 @@
     "versions": {
       "pi": "0.73.1"
     },
-    "result": "live \u2014 pi --model openllm/grok/grok-4.7 -p completed through the local OpenLLM gateway (also verified on grok-4.5)"
+    "result": "live — pi --model openllm/grok/grok-4.7 -p completed through the local OpenLLM gateway (also verified on grok-4.5)"
   }
 }

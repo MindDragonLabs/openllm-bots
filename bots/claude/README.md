@@ -2,7 +2,7 @@
 
 **Orchestrator:** Claude Code (`claude`)
 **Model fabric:** [OpenLLM](https://openllm.sh) via Anthropic-compatible base URL
-**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 against Claude Code 2.1.282
+**Status:** ready ([`bot.manifest.json`](./bot.manifest.json)) · verified live 2026-09-28 (loopback gateway; see caveat) against Claude Code 2.1.282
 
 Claude Code keeps planning, tools, approvals, and file/git access. OpenLLM becomes the model fabric: every completion is routed through the OpenLLM gateway instead of a first-party Anthropic endpoint.
 
@@ -42,6 +42,10 @@ Copy-paste steps, model ids, and pitfalls: [docs/setup.md](./docs/setup.md).
 - Requests go to the OpenLLM gateway; OpenLLM routes to whichever provider/subscription it fronts.
 - Model ids become **gateway catalog ids** (`grok/grok-4.7`, `kimi_code/k3`, chain aliases like `lite`/`plus`/`ultra`). Do not invent ids — list them from the gateway.
 - Skills, hooks, subagents, MCP, and permission modes are unchanged; only the endpoint moves.
+
+## Loopback caveat
+
+"Verified live" means a real completion routed through an OpenLLM gateway on the date shown. The survey gateway runs on loopback, where the daemon does not enforce request authentication — the runs prove routing and request shape, not key transport. See [the survey method note](../../docs/harness-survey.md).
 
 ## Gotchas
 

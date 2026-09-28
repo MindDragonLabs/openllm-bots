@@ -17,11 +17,11 @@ Architecture: [shared/architecture.md](../../../../shared/architecture.md). If M
 One sentence: outcome, repo/path, definition of done. One question max, then proceed.
 
 ### 2. Pick a model via the gateway
-`mcp_openllm_api_v1Models_list` → choose from **returned ids** (chain aliases included). Match the job: coding-capable entry for implementation; stronger reasoning entry for hard review; small/fast for classify-summarize. Say which id and why. If listing fails, continue with your default model and say the catalog was unavailable.
+list models via the live MCP tool (e.g. `mcp_openllm_api_v1Models_list` on openllm CLI 2.6.36 — **discover the actual name first**, it may differ) → choose from **returned ids** (chain aliases included). Match the job: coding-capable entry for implementation; stronger reasoning entry for hard review; small/fast for classify-summarize. Say which id and why. If listing fails, continue with your default model and say the catalog was unavailable.
 
 ### 3. Gather context
 - **Repo:** Hermes-native tools — `read_file`, `search_files`, terminal, tests.
-- **OpenLLM code/docs search:** `index_codebase` / `index_docs` once, then `search_code` / `search_docs`. Library docs, indexed code, public references.
+- **OpenLLM code/docs search:** index once, then search (landmark names from 2.6.36: `index_codebase` / `index_docs`, then `search_code` / `search_docs` — discover live). Library docs, indexed code, public references.
 - **Memory:** `memory` / `recall` for prior decisions. No secrets there.
 
 Skip absent groups; never fake results.
@@ -30,7 +30,7 @@ Skip absent groups; never fake results.
 Edit (`patch`/`write_file`), lint, test, commit — Hermes' own toolset. PRs via `gh`; deploys via Vercel/whatever the project uses. OpenLLM replaces none of that.
 
 ### 5. Optional specialist hop
-Second opinion or different model family: `mcp_openllm_api_v1ChatCompletions_chatCompletions` (or `api_v1Messages_messages` / `api_v1Responses_responses`) with a **tight prompt and relevant snippets** — never the whole repo. You apply or reject the output in the working tree.
+Second opinion or different model family: the live chat-completions tool (2.6.36 landmark: `mcp_openllm_api_v1ChatCompletions_chatCompletions`; also `/v1/messages`, `/v1/responses` variants — discover live) with a **tight prompt and relevant snippets** — never the whole repo. You apply or reject the output in the working tree.
 
 ### 6. Report
 - What changed (files, behavior).
