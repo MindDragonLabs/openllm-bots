@@ -134,3 +134,7 @@ Expected: `OPENLLM-OK` (a `ZCode Built-in missing` notice may precede it; it is 
 | 404 / not found | `baseUrl` missing `/v1` for the chat-completions type | Use `http://<host>:8787/v1` |
 | Config ignored | Desktop overwrote the shared file | Set `ZCODE_PERSONAL_PROVIDER_CONFIG_FILE` to a separate file |
 | setting.json locale warning (`ui.locale: Invalid option`) | older/other tool wrote an invalid locale | Cosmetic for this attach; fix separately in `~/.zcode/cli/setting.json` |
+
+## Loopback caveat
+
+"Verified live" ran on a loopback gateway that does not enforce request authentication — it proves routing, not key transport. See the [survey method note](../../../docs/harness-survey.md).

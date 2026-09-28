@@ -85,8 +85,9 @@ Full setup: [bots/codex/docs/setup.md](./bots/codex/docs/setup.md)
 
 ### OpenCode
 
+The project `opencode.json`:
+
 ```jsonc
-// opencode.json
 {
   "provider": {
     "openllm": {
@@ -99,7 +100,7 @@ Full setup: [bots/codex/docs/setup.md](./bots/codex/docs/setup.md)
 }
 ```
 
-Key: `options.apiKey` is `"{env:OPENLLM_API_KEY}"` — the reference resolves the exported variable at launch. Then: `opencode run --model 'openllm/grok/grok-4.7' "..."`.
+Key: `options.apiKey` is `"{env:OPENLLM_API_KEY}"` — the reference resolves the exported variable at launch. Then: `opencode run --model 'openllm/grok/grok-4.7' "..."` (see bot docs for the full model list).
 
 Full setup: [bots/opencode/docs/setup.md](./bots/opencode/docs/setup.md)
 
@@ -114,7 +115,7 @@ Full setup: [bots/pi/docs/setup.md](./bots/pi/docs/setup.md)
 ```sh
 mcode provider add --name "OpenLLM" --base-url "http://127.0.0.1:8787" \
   --api-format anthropic-messages --model "grok/grok-4.7" --api-key-env OPENLLM_API_KEY
-mcode exec --model "custom_provider:openllm/grok/grok-4.7" --permission off "..."
+mcode exec --model "custom_provider:openllm/grok/grok-4.7" --permission off "..."  # more models: see bot docs
 ```
 
 Full setup: [bots/mcode/docs/setup.md](./bots/mcode/docs/setup.md)

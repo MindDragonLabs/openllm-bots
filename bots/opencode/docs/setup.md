@@ -94,3 +94,7 @@ Mirror the ids you want into the provider's `models` object.
 | Provider not listed in TUI | config file location/syntax | Validate JSON; project `opencode.json` overrides global |
 | 404 on requests | `baseURL` missing `/v1` | Use `http://<host>:8787/v1` |
 | Model listed but calls fail | id not in gateway catalog | Verify with `/v1/models`; remove dead entries |
+
+## Loopback caveat
+
+"Verified live" ran on a loopback gateway that does not enforce request authentication — it proves routing, not key transport. See the [survey method note](../../../docs/harness-survey.md).

@@ -94,3 +94,7 @@ Update `model =` in the config to the id you want. Per-invocation override: `cod
 | 401 from gateway | key not in env | `export OPENLLM_API_KEY=...` in the launching shell |
 | Requests still hit OpenAI | provider block not selected | `model_provider = "openllm"` must be set (top level, not inside the block) |
 | `Model metadata ... not found` warning | gateway id not in codex's local metadata | Cosmetic; completion still routes |
+
+## Loopback caveat
+
+"Verified live" ran on a loopback gateway that does not enforce request authentication — it proves routing, not key transport. See the [survey method note](../../../docs/harness-survey.md).

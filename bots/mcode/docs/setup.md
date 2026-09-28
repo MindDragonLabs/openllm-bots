@@ -85,3 +85,7 @@ Add more with a second `mcode provider add ... --model <id>` run, or re-register
 | 401 from gateway | key not in env | `export OPENLLM_API_KEY=...` in the launching shell |
 | Model not found | id not in gateway catalog | Pick an id from `/v1/models` |
 | Still routing to MiniMax | provider source still `minimax_api` | Select the model with the `custom_provider:openllm/` prefix, or `mcode provider use` |
+
+## Loopback caveat
+
+"Verified live" ran on a loopback gateway that does not enforce request authentication — it proves routing, not key transport. See the [survey method note](../../../docs/harness-survey.md).

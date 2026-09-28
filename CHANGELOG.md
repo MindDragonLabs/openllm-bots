@@ -19,23 +19,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **MiniMax Code** (`bots/mcode`) — `mcode provider add --api-format anthropic-messages`, mcode 0.4.12.
   - **ZCode** (`bots/zcode`) — `~/.zcode/v2/provider_config.json` provider rule + manual model rules + default selection, zcode-app-cli 3.14.3-28.
 - Each bot folder ships `README.md`, `bot.manifest.json`, and `docs/setup.md` with copy-paste attach steps and a troubleshooting table.
-(from PR #3 / PR #2)
-- **Hermes** (`bots/hermes`, status: ready) — `hermes mcp add` stdio setup docs (verified against openllm CLI 2.6.36 / 43 tools) plus five skills; documents two `hermes mcp add` pitfalls (`--args` must come last; the tool-enable prompt needs stdin when scripted).
-- **Muse** (`bots/muse`, status: ready) — emulated workspace skill + Secure Vault against openllm.sh. Source link removed 2026-09-28 (private folder).
+- **Hermes** (PR #3; `bots/hermes`, ready) — `hermes mcp add` stdio setup docs (verified against openllm CLI 2.6.36 / 43 tools) plus five skills; documents two `hermes mcp add` pitfalls (`--args` must come last; the tool-enable prompt needs stdin when scripted).
+- **Muse** (PR #2; `bots/muse`, ready) — emulated workspace skill + Secure Vault against openllm.sh. Source link removed 2026-09-28 (private folder).
 
 ### Changed
 
 - Audit follow-ups (Opus 5.5 round 1 + Sonnet 5.5 / Codex Astra / MiniMax M3 round 2): survey table carries the three MCP bots as numbered rows (12 live + 2 gated + 9 pending = 23); Gateway endpoints section added to shared/openllm-connect.md; OpenCode key form is the documented `{env:...}` reference; Pi apiKey is the bare `OPENLLM_API_KEY` variable name and model fields use `contextWindow` (both fixed after source-level review + live re-verify); Muse CLI refuses redirects so the bearer never crosses origins; zcode snippet complete; codex TOML placement guidance; loopback-auth caveat on all verified claims.
-- All OpenLLM CLI links point at the prerelease branch: `https://github.com/openllmsh/cli/tree/prerelease` everywhere..
+- All OpenLLM CLI links point at the prerelease branch: `https://github.com/openllmsh/cli/tree/prerelease` everywhere.
 - Harness survey expanded from 18 to 23 harnesses; codex verdict updated BLOCKED → LIVE (Responses wire API + `web_search = "disabled"`), opencode pending → LIVE, zcode added as LIVE. [docs/harness-survey.md](./docs/harness-survey.md).
 - README rebuilt: badge row, table of contents, 10-bot table with attach methods and verification dates, per-harness quick starts, "Which attach method?" matrix. [README.md](./README.md).
 - CONTRIBUTING host enum extended: `claude-code | codex | opencode | pi | mcode | zcode` join the list.
 
-
 ### Fixed
 
 - Devin follow-ups — Muse CLI auth/usage/latency/URL checks; fix OpenLLM install URL; Hermes CLI version check.
-
 
 ## [0.1.0] — 2026-09-19
 
